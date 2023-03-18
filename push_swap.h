@@ -6,9 +6,18 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
+#include <ctype.h>
+
+typedef struct s_list
+{
+	int			content;
+	struct s_list	*next;
+}				t_list;
 
 
+t_list	*ft_lstnew(void *content);
 
+int		ft_isdigit(char  *c);
 char	*ft_substr(char *s, unsigned int start, size_t len);
 int		ft_strlen(char *s);
 char	**ft_split(char *str, char c);
