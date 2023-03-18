@@ -3,18 +3,18 @@
 char	*ft_strdup(char *s1)
 {
 	int		len;
-	int		i;
+	int		j;
 	char	*p;
 
 	len = ft_strlen(s1);
-	i = 0;
+	j = 0;
 	p = malloc(sizeof(char) * len + 1);
 	if (!p)
 		return (0);
-	while (i < len)
+	while (j < len)
 	{
-		p[i] = s1[i];
-		i++;
+		p[j] = s1[j];
+		j++;
 	}
 	p[len] = '\0';
 	return (p);
