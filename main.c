@@ -92,31 +92,16 @@ int main(int ac, char **av)
 			}
 			i++;
 		}
-		i = 0;
-		while(c[i])
-		{
-			k = atoi(c[i]);
-			printf("  %d   ", k);
-			i++;
-		}
+	}
+	t_list *stack_a = NULL;
+	for (i = 0; c[i]; i++)
+	{
+		ft_lstadd_back(&stack_a, ft_lstnew(atoi(c[i])));
+	}
+	while (stack_a)
+	{
+		printf("stack_a %d \n", stack_a->content);
+		stack_a = stack_a -> next;
 	}
 	return 0;
 }
-// t_list *str;
-// t_list *help = str;
-// while(str)
-// {
-
-// 	int p = str -> content;
-// 	help = str;
-// 	while(help)
-// 	{
-// 		if(p == help -> content)
-// 		{
-// 			write(2, "Error!", 6);
-// 			exit(0);
-// 		}
-// 		help = help -> next;
-// 	}
-// 	str = str -> next;
-// }
