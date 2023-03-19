@@ -13,6 +13,8 @@ typedef struct s_list
 	struct s_list *next;
 } t_list;
 
+int	ft_atoi(const char *str);
+
 t_list	*ft_lstnew(int content);
 t_list	*ft_lstlast(t_list *lst);
 void	ft_lstadd_back(t_list **lst, t_list *new);

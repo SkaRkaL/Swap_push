@@ -134,7 +134,7 @@ int main(int ac, char **av)
 	t_list *stack_b = NULL;
 	for (i = 0; c[i]; i++)
 	{
-		ft_lstadd_back(&stack_a, ft_lstnew(atoi(c[i])));
+		ft_lstadd_back(&stack_a, ft_lstnew(ft_atoi(c[i])));
 	}
 
 
