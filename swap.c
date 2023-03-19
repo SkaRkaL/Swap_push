@@ -15,14 +15,14 @@ void	sa(t_list **stack, int index)
 {
 	swap(stack);
 	if (index)
-		ft_putendl_fd("sa", 1);
+		puts("sa");
 }
 
 void	sb(t_list **stack, int index)
 {
 	swap(stack);
 	if (index)
-		ft_putendl_fd("sb", 1);
+		puts("sb");
 }
 
 void	ss(t_list **stack_a, t_list **stack_b, int index)
@@ -30,5 +30,5 @@ void	ss(t_list **stack_a, t_list **stack_b, int index)
 	swap(stack_a);
 	swap(stack_b);
 	if (index)
-		ft_putendl_fd("ss", 1);
+		puts("ss");
 }

@@ -61,7 +61,40 @@ char	*ft_strjoin(int size, char **strs, char *sep)
 	return (str);
 }
 
+int	ft_lstsize(t_list *lst)
+{
+	int	size;
 
+	if (!lst)
+		return (0);
+	size = 0;
+	while (lst)
+	{
+		lst = lst->next;
+		size++;
+	}
+	return (size);
+}
+void aff(t_list *stack_a,t_list *stack_b)
+{
+	printf("------Start-----\n");
+	while (stack_a || stack_b)
+	{
+		if (stack_a)
+		{
+			printf("%d",stack_a->content);
+			stack_a = stack_a->next;
+		}
+		if (stack_b)
+		{
+			printf("\t%d",stack_b->content);
+			stack_b = stack_b->next;
+		}
+	printf("\n");
+	}
+	printf("-\t-\na\tb\n");
+	printf("------End-----\n");
+}
 int main(int ac, char **av)
 {
 	int i = 0;
@@ -77,7 +110,7 @@ int main(int ac, char **av)
 		while(c[i])
 		{
 			if (ft_isdigit(c[i]))
-				return (write(2, "Error !!", 9));
+				return (write(2, "Error !", 8));
 			i++;
 		}
 		i = 0;
@@ -93,15 +126,23 @@ int main(int ac, char **av)
 			i++;
 		}
 	}
+	else 
+		return (write(2, "Error Args !", 13));
+
+
 	t_list *stack_a = NULL;
+	t_list *stack_b = NULL;
 	for (i = 0; c[i]; i++)
 	{
 		ft_lstadd_back(&stack_a, ft_lstnew(atoi(c[i])));
 	}
-	while (stack_a)
-	{
-		printf("stack_a %d \n", stack_a->content);
-		stack_a = stack_a -> next;
-	}
+
+
+	aff(stack_a,stack_b);
+	pb(&stack_b, &stack_a, ft_lstsize(stack_b), ft_lstsize(stack_a));
+	aff(stack_a,stack_b);
+	pa(&stack_a, &stack_b, ft_lstsize(stack_a), ft_lstsize(stack_b));
+	aff(stack_a,stack_b);
+
 	return 0;
 }
