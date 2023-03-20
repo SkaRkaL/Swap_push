@@ -123,6 +123,7 @@ int	max_min_element(t_list *stack, int *min)
 	return (ret_max);
 }
 
+
 int main(int ac, char **av)
 {
 	int i = 0;
