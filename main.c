@@ -135,6 +135,8 @@ int main(int ac, char **av)
 	int a = 0;
 	if (ac > 1)
 	{
+		if (av[1][0] == '\0')
+			return (write(2, "Error ! Empty String\n", 22));
 		c = ft_split(ft_strjoin(ac - 1, av + 1, " "), ' ');
 		while (c[i])
 		{
@@ -165,8 +167,6 @@ int main(int ac, char **av)
 	{
 		ft_lstadd_back(&stack_a, ft_lstnew(atoi(c[i])));
 	}
-
-
 	if (stack_a->content > stack_a->next->content)
 	{
 		aff(stack_a,stack_b);
