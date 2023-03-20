@@ -95,6 +95,34 @@ void aff(t_list *stack_a,t_list *stack_b)
 	printf("-\t-\na\tb\n");
 	printf("------End-----\n");
 }
+
+int	max_min_element(t_list *stack, int *min)
+{
+	int max;
+	int min;
+	int	ret_max;
+
+	*min = 0;
+	ret_max = 0;
+	max = stack->content;
+	min = stack->content;
+	while (stack->next)
+	{
+		if (max < stack->next->content)
+		{
+			max = stack->next->content;
+			ret_max++;
+		}
+		if (min > stack->next->content)
+		{
+			min = stack->next->content;
+			(*min)++;
+		}
+		stack = stack->next;
+	}
+	return (ret_max);
+}
+
 int main(int ac, char **av)
 {
 	int i = 0;
@@ -107,7 +135,7 @@ int main(int ac, char **av)
 	if (ac > 1)
 	{
 		c = ft_split(ft_strjoin(ac - 1, av + 1, " "), ' ');
-		while(c[i])
+		while (c[i])
 		{
 			if (ft_isdigit(c[i]))
 				return (write(2, "Error !", 8));
@@ -138,11 +166,24 @@ int main(int ac, char **av)
 	}
 
 
-	aff(stack_a,stack_b);
-	pb(&stack_b, &stack_a, ft_lstsize(stack_b), ft_lstsize(stack_a));
-	aff(stack_a,stack_b);
-	pa(&stack_a, &stack_b, ft_lstsize(stack_a), ft_lstsize(stack_b));
-	aff(stack_a,stack_b);
+	if (stack_a->content > stack_a->next->content)
+	{
+		aff(stack_a,stack_b);
+		sa(&stack_a, ft_lstsize(stack_a));
+		aff(stack_a,stack_b);
+		rra(&stack_a, ft_lstsize(stack_a));
+		aff(stack_a,stack_b);
+	}
+	else if (stack_a->content < stack_a->next->content)
+	{
+		aff(stack_a,stack_b);
+		sa(&stack_a, ft_lstsize(stack_a));
+		aff(stack_a,stack_b);
+		ra(&stack_a, ft_lstsize(stack_a));
+		aff(stack_a,stack_b);
+	}
+	else
+		return(0);
 
 	return 0;
 }
