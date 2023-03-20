@@ -96,27 +96,29 @@ void aff(t_list *stack_a,t_list *stack_b)
 	printf("------End-----\n");
 }
 
-int	max_min_element(t_list *stack, int *min)
+int	max_min_element(t_list *stack, int *ret_min)
 {
 	int max;
 	int min;
 	int	ret_max;
 
-	*min = 0;
-	ret_max = 0;
+	ret_max = 1;
+	*ret_min = 1;
 	max = stack->content;
 	min = stack->content;
+	int pos = 1;
 	while (stack->next)
 	{
+		pos++;
 		if (max < stack->next->content)
 		{
 			max = stack->next->content;
-			ret_max++;
+			ret_max = pos;
 		}
 		if (min > stack->next->content)
 		{
 			min = stack->next->content;
-			(*min)++;
+			*ret_min = pos;
 		}
 		stack = stack->next;
 	}
@@ -163,28 +165,45 @@ int main(int ac, char **av)
 
 	t_list *stack_a = NULL;
 	t_list *stack_b = NULL;
+
 	for (i = 0; c[i]; i++)
 	{
 		ft_lstadd_back(&stack_a, ft_lstnew(atoi(c[i])));
 	}
-	if (stack_a->content > stack_a->next->content)
+	
+	aff(stack_a, stack_b);
+	int min;
+	if(max_min_element(stack_a, &min) == 1)
 	{
-		aff(stack_a,stack_b);
-		sa(&stack_a, ft_lstsize(stack_a));
-		aff(stack_a,stack_b);
-		rra(&stack_a, ft_lstsize(stack_a));
-		aff(stack_a,stack_b);
+		if (min == 3)
+		{
+			sa(&stack_a, ft_lstsize(stack_a));
+			rra(&stack_a, ft_lstsize(stack_a));
+		}
+		else
+		{
+			ra(&stack_a, ft_lstsize(stack_a));
+		}
 	}
-	else if (stack_a->content < stack_a->next->content)
+	else if(max_min_element(stack_a, &min) == 2)
 	{
-		aff(stack_a,stack_b);
-		sa(&stack_a, ft_lstsize(stack_a));
-		aff(stack_a,stack_b);
-		ra(&stack_a, ft_lstsize(stack_a));
-		aff(stack_a,stack_b);
+		if (min == 1)
+		{
+			sa(&stack_a, ft_lstsize(stack_a));
+			ra(&stack_a, ft_lstsize(stack_a));
+		}
+		else
+			rra(&stack_a, ft_lstsize(stack_a));
 	}
-	else
-		return(0);
+	else if(max_min_element(stack_a, &min) == 3)
+	{
+		if (min == 2)
+			sa(&stack_a, ft_lstsize(stack_a));
+	}
+	aff(stack_a, stack_b);
+
 
 	return 0;
 }
+
+
