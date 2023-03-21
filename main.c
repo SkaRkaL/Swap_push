@@ -96,6 +96,7 @@ void aff(t_list *stack_a,t_list *stack_b)
 	printf("------End-----\n");
 }
 
+// Check MAX & MIN f Stack 
 int	max_min_element(t_list *stack, int *ret_min)
 {
 	int max;
@@ -125,16 +126,32 @@ int	max_min_element(t_list *stack, int *ret_min)
 	return (ret_max);
 }
 
+void	is_sorted(t_list *stack_a)
+{
+	t_list	*tmp;
+	// int cont[MAX_INT] = {0};
+
+	tmp = stack_a->next;
+	while(stack_a->next)
+	{
+		tmp = stack_a->next;
+		while (tmp)
+		{
+			if (stack_a->content > tmp->content)
+				return ;
+			tmp = tmp->next;
+		}
+		stack_a = stack_a->next;
+	}
+	exit(write(1, "Already Sorted :)\n", 19) & 0);
+}
 
 int main(int ac, char **av)
 {
 	int i = 0;
 	int j;
 	char **c;
-	char *tmp;
-	int k;
 
-	int a = 0;
 	if (ac > 1)
 	{
 		if (av[1][0] == '\0')
@@ -170,37 +187,18 @@ int main(int ac, char **av)
 	{
 		ft_lstadd_back(&stack_a, ft_lstnew(atoi(c[i])));
 	}
+	is_sorted(stack_a);
+	// aff(stack_a, stack_b);
+
+	// Sort 5
+	sort_V(&stack_a, &stack_b);
 	
-	aff(stack_a, stack_b);
-	int min;
-	if(max_min_element(stack_a, &min) == 1)
-	{
-		if (min == 3)
-		{
-			sa(&stack_a, ft_lstsize(stack_a));
-			rra(&stack_a, ft_lstsize(stack_a));
-		}
-		else
-		{
-			ra(&stack_a, ft_lstsize(stack_a));
-		}
-	}
-	else if(max_min_element(stack_a, &min) == 2)
-	{
-		if (min == 1)
-		{
-			sa(&stack_a, ft_lstsize(stack_a));
-			ra(&stack_a, ft_lstsize(stack_a));
-		}
-		else
-			rra(&stack_a, ft_lstsize(stack_a));
-	}
-	else if(max_min_element(stack_a, &min) == 3)
-	{
-		if (min == 2)
-			sa(&stack_a, ft_lstsize(stack_a));
-	}
-	aff(stack_a, stack_b);
+	// Sort 3
+	sort_III(&stack_a);
+
+
+
+	// aff(stack_a, stack_b);
 
 
 	return 0;

@@ -10,10 +10,10 @@ int	ft_strlen(char *s)
 	return (i);
 }
 
-char	*ft_substr(char *s, unsigned int start, size_t len)
+char	*ft_substr(char *s, int start, int len)
 {
 	char	*str;
-	size_t	i;
+	int	i;
 
 	if (!s)
 		return (NULL);
