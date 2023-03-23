@@ -188,7 +188,7 @@ int main(int ac, char **av)
 		ft_lstadd_back(&stack_a, ft_lstnew(atoi(c[i])));
 	}
 	is_sorted(stack_a);
-	// aff(stack_a, stack_b);
+	aff(stack_a, stack_b);
 
 	// Sort 5
 	sort_V(&stack_a, &stack_b);
@@ -198,10 +198,8 @@ int main(int ac, char **av)
 
 
 
-	// aff(stack_a, stack_b);
+	aff(stack_a, stack_b);
 
 
 	return 0;
 }
-
-
