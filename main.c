@@ -135,6 +135,7 @@ void	is_sorted(t_list *stack_a)
 	while(stack_a->next)
 	{
 		tmp = stack_a->next;
+
 		while (tmp)
 		{
 			if (stack_a->content > tmp->content)
@@ -146,6 +147,115 @@ void	is_sorted(t_list *stack_a)
 	exit(write(1, "Already Sorted :)\n", 19) & 0);
 }
 
+t_list *__find_lis_head(t_list **stack)
+{
+	int len = 0;
+	t_list *head = (*stack);
+	t_list *ret;
+	while(head)
+	{
+		int size = ft_lstsize(*stack);
+		int count = 0;
+		t_list *head_tmp = head;
+		t_list *tmp = head->next;
+		while(tmp)
+		{
+			if(head_tmp->content < tmp->content) 
+			{
+				head_tmp = tmp;
+				count++;
+			}
+			tmp = tmp->next;
+			size--;
+		}
+		if(size)
+		{
+			tmp = (*stack);
+			while(size > 0)
+			{
+				if(head_tmp->content < tmp->content)
+				{
+					head_tmp = tmp;
+					count++;
+				}
+				tmp = tmp->next;
+				size--;
+			}
+		}
+		if(count >= len)
+		{
+			len = count;
+			ret = head;
+		}
+		head = head->next;
+	}
+	//****************************************************************
+	head = (*stack);
+	t_list *rete;
+	int newlen=0;
+	while(head)
+	{
+		int size = ft_lstsize(*stack);
+		int count = 0;
+		t_list *head_tmp = head;
+		t_list *tmp = head->next;
+		while(tmp)
+		{
+			if(head_tmp->content < tmp->content) 
+			{
+				head_tmp = tmp;
+				count++;
+				tmp->flag = 1;
+			}
+			else
+				tmp->flag = 0;
+			tmp = tmp->next;
+			size--;
+		}
+		if(size)
+		{
+			tmp = (*stack);
+			while(size > 0)
+			{
+				if(head_tmp->content < tmp->content)
+				{
+					head_tmp = tmp;
+					count++;
+					tmp->flag = 0;
+				}
+				else
+					tmp->flag = 1;
+				tmp = tmp->next;
+				size--;
+			}
+		}
+		if(count >= newlen)
+		{
+			newlen = count;
+			rete = head;
+		}
+		printf("newlen==%d|len====%d\n",newlen,len);
+		if (newlen == len)
+			break;
+		head = head->next;
+	}
+	
+	t_list *tmpe=*stack;
+	printf("\n");
+	while(tmpe)
+	{
+		if (tmpe->flag == 1)
+			printf("from1|%d|\n",tmpe->content);
+		else
+			printf("from0|%d|\n",tmpe->content);
+		tmpe=tmpe->next;
+	}
+	printf("\n");
+	printf("\n len -> %d\n", len);
+	return(ret);
+}
+// 9 21 8 32 20 49 40 60 70
+// 1 1  0 1  0  1  0  1  1  
 int main(int ac, char **av)
 {
 	int i = 0;
@@ -190,12 +300,17 @@ int main(int ac, char **av)
 	is_sorted(stack_a);
 	aff(stack_a, stack_b);
 
+	if (ft_lstsize(stack_a) > 5)
+	{
+		//make_head;
+		printf("%d\n",__find_lis_head(&stack_a)->content);
+		return(0);
+	}
 	// Sort 5
 	sort_V(&stack_a, &stack_b);
 	
 	// Sort 3
 	sort_III(&stack_a);
-
 
 
 	aff(stack_a, stack_b);

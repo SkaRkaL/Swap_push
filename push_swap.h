@@ -11,6 +11,7 @@ typedef struct	s_list
 {
 	int content;
 	struct s_list *next;
+	int flag;
 } t_list;
 
 int	ft_atoi(const char *str);
