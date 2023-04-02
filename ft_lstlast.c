@@ -1,11 +1,14 @@
 #include "push_swap.h"
+#include<stdbool.h>
 
 t_list	*ft_lstlast(t_list *lst)
 {
 	if (!lst)
 		return (NULL);
 	while (lst->next)
+	{
 		lst = lst->next;
+	}
 	return (lst);
 }
 

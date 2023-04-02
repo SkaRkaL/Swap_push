@@ -9,6 +9,7 @@
 
 typedef struct	s_list
 {
+	int size;
 	int content;
 	struct s_list *next;
 	int flag;
