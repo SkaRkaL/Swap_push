@@ -112,7 +112,7 @@ void	moves_indx(t_list **stack_a, t_list **stack_b)
 	}
 	
 	printf("moves table from here *********\n");
-	for(int j = 0;j<ft_lstsize(*stack_b);j++)
-		printf("|%d|\t",moves[j]);
+	for(long j = 0; j < (long)ft_lstsize(*stack_b); j++)
+		printf("|%d|\t", moves[j]);
 	printf("\nmoves table ends here *********\n");
 }

@@ -356,6 +356,7 @@ int main(int ac, char **av)
 		puts("\tAfteeeeer Msimna");
 		puts("\n");
 		aff(stack_a, stack_b, big_size);
+		puts("\n");
 		moves_indx(&stack_a, &stack_b);
 		puts("\n");
 
