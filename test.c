@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void	oli(t_list **stack_a, t_list *test, int a)
+void	mn_te7t_lfo9(t_list **stack_a, t_list *test, int a)
 {
 	while(1)
 	{
@@ -15,7 +15,7 @@ void	oli(t_list **stack_a, t_list *test, int a)
 
 void fun1(t_list **stack_a, t_list **stack_b, t_list *test, int a)
 {
-	oli(stack_a, test, a);
+	mn_te7t_lfo9(stack_a, test, a);
 	pb(stack_b, stack_a, ft_lstsize(*stack_a));
 }
 
@@ -56,11 +56,11 @@ void	push_flag0_b(t_list **stack_a, t_list **stack_b)
 	}
 }
 
-int moves_to_be_in_top(t_list *stack,t_list *elem)
+int best_moves(t_list *stack,t_list *elem)
 {
-	int i=0;
-	t_list *tmp=stack;
-	int top_or_down=fun(stack,elem);
+	int i = 0;
+	t_list *tmp = stack;
+	int top_or_down = fun(stack,elem);
 	if (top_or_down == 1)
 	{
 		while(tmp)
@@ -68,7 +68,7 @@ int moves_to_be_in_top(t_list *stack,t_list *elem)
 			if (tmp->content == elem->content)
 				break;
 			i++;
-			tmp=tmp->next;
+			tmp = tmp->next;
 		}
 		return (i);
 	}
@@ -79,19 +79,19 @@ int moves_to_be_in_top(t_list *stack,t_list *elem)
 			if (tmp->content == elem->content)
 				break;
 			i++;
-			tmp=tmp->next;
+			tmp = tmp->next;
 		}
 		return (ft_lstsize(stack) - i);
 	}
 }
 
-void	re_moves(t_list **stack_a, t_list **stack_b)
+void	moves_indx(t_list **stack_a, t_list **stack_b)
 {
 	t_list *first_tmp = *stack_a;
 	t_list *second_tmp = (*stack_a)->next;
-	t_list *b_tmp=*stack_b;
+	t_list *b_tmp = *stack_b;
 	int *moves;
-	int i=0;
+	int i = 0;
 	moves = (int *)malloc(sizeof(int)*ft_lstsize(*stack_b));
 	while(b_tmp)
 	{
@@ -101,18 +101,18 @@ void	re_moves(t_list **stack_a, t_list **stack_b)
 		{
 			if (b_tmp->content > first_tmp->content && b_tmp->content < second_tmp->content)
 			{
-				moves[i] = 1 + moves_to_be_in_top(*stack_b,b_tmp) + moves_to_be_in_top(*stack_a,second_tmp);
+				moves[i] = 1 + best_moves(*stack_b, b_tmp) + best_moves(*stack_a, second_tmp);
 				break;
 			}
-			second_tmp=second_tmp->next;
-			first_tmp=first_tmp->next;
+			second_tmp = second_tmp->next;
+			first_tmp = first_tmp->next;
 		}
 		i++;
-		b_tmp=b_tmp->next;
+		b_tmp = b_tmp->next;
 	}
 	
 	printf("moves table from here *********\n");
-	for(int j=0;j<ft_lstsize(*stack_b);j++)
+	for(int j = 0;j<ft_lstsize(*stack_b);j++)
 		printf("|%d|\t",moves[j]);
-	printf("moves table ends here *********\n");
+	printf("\nmoves table ends here *********\n");
 }

@@ -236,9 +236,9 @@ t_list *__find_lis_head(t_list **stack, int full_size)
 	while (ll)
 	{
 		if (tmpe->flag == 1)
-			printf("Flag ->  1        |%d|\n", tmpe->content);
+			printf("Flag -->  1        |%d|\n", tmpe->content);
 		else
-			printf("Flag ->  o |%d|\n", tmpe->content);
+			printf("Flag -> 0   |%d|\n", tmpe->content);
 		tmpe = tmpe->next;
 		ll--;
 	}
@@ -328,28 +328,17 @@ int main(int ac, char **av)
 	else if (size > 5)
 	{	// Big Sort
 		// fack_swap(&stack_a);
-		//****************************************************************
+		//***********************************************************
+			// Markup_head
 		if (tempe_head->next == NULL)
 			tempe_head->next = stack_a;
-			// Markup_head
 		t_list *Markup_head = __find_lis_head(&stack_a, size);
 		printf("\n\tMarkup Head -> |%d|\n\n", Markup_head->content);
-		t_list *head = Markup_head;
-		int tmp_size = size;
-		while (tmp_size)
-		{
-			if (head->flag == 1)
-				printf(" |%d|  ", head->content);
-			head = head->next;
-			tmp_size--;
-		}
 		if (tempe_head->next ==  stack_a)
 			tempe_head->next = NULL;
-		//****************************************************************
-		puts("\n");
+		//***********************************************************
 		indx_stack(&stack_a);
-		// aff(stack_a, stack_b, size);
-		//****************************************************************
+		//********************************
 		t_list *tempo=NULL;
 		tempo = stack_a;
 		int flag_size=0;
@@ -361,20 +350,16 @@ int main(int ac, char **av)
 		}
 		
 		push_flag0_b(&stack_a, &stack_b);
-		int big_size = ft_lstsize(stack_a) > ft_lstsize(stack_b) ? ft_lstsize(stack_a) : ft_lstsize(stack_b); 
-		aff(stack_a, stack_b, big_size);
-		printf("\n\t-A7seeen Head ----> %d\n", Markup_head->content);
-		oli(&stack_a, Markup_head, fun(stack_a, Markup_head));
+		int big_size = ft_lstsize(stack_a) > ft_lstsize(stack_b) ? ft_lstsize(stack_a) : ft_lstsize(stack_b);
+		puts("\tBefooooore Msimna");
+		mn_te7t_lfo9(&stack_a, Markup_head, fun(stack_a, Markup_head));
+		puts("\tAfteeeeer Msimna");
 		puts("\n");
 		aff(stack_a, stack_b, big_size);
-		re_moves(&stack_a, &stack_b);
-
+		moves_indx(&stack_a, &stack_b);
 		puts("\n");
-		printf("iddx  %d", stack_b->indx);
-		puts("\n");
-		printf("iddx  %d", stack_b->next->indx);
 
-		//****************************************************************
+
 	}
 	return 0;
 }
