@@ -9,10 +9,12 @@
 
 typedef struct	s_list
 {
+	struct s_list *prev;
 	int size;
+	int indx;
 	int content;
-	struct s_list *next;
 	int flag;
+	struct s_list *next;
 } t_list;
 
 int	ft_atoi(const char *str);
@@ -54,5 +56,11 @@ void	sort_V(t_list **stack_a, t_list **stack_b);
 int		max_min_element(t_list *stack, int *ret_min);
 
 
+
+
+void	indx_stack(t_list **stack);
+void	fun1(t_list **stack_a, t_list **stack_b, t_list *test, int a);
+int		fun(t_list *stack, t_list *elem);
+void	push_flag0_b(t_list **stack_a, t_list **stack_b);
 
 #endif

@@ -84,13 +84,13 @@ void aff(t_list *stack_a, t_list *stack_b, int size)
 	{
 		if (stack_a)
 		{
-			printf("%d", stack_a->content);
-			// printf("------> %d",stack_a->flag);
+			printf("%d|%d", stack_a->content,stack_a->indx);
+			// printf("------> %d",stack_a->indx);
 			stack_a = stack_a->next;
 		}
 		if (stack_b)
 		{
-			printf("\t%d", stack_b->content);
+			printf("\t%d|%d", stack_b->content,stack_b->indx);
 			// printf("------> %d",stack_b->flag);
 			stack_b = stack_b->next;
 		}
@@ -236,16 +236,39 @@ t_list *__find_lis_head(t_list **stack, int full_size)
 	while (ll)
 	{
 		if (tmpe->flag == 1)
-			printf("from->  1        |%d|\n", tmpe->content);
+			printf("Flag ->  1        |%d|\n", tmpe->content);
 		else
-			printf("from-> 0 |%d|\n", tmpe->content);
+			printf("Flag ->  o |%d|\n", tmpe->content);
 		tmpe = tmpe->next;
 		ll--;
 	}
 	return (ret);
 }
-// 9 21 8 32 20 49 40 60 70
-// 1 1  0 1  0  1  0  1  1
+
+void	indx_stack(t_list **stack)
+{
+	t_list *tompo;
+		tompo = *stack;
+		int ahsseni=0;
+		while(tompo)
+		{
+			tompo->indx=ahsseni;
+			ahsseni++;
+			tompo=tompo->next;
+		}
+}
+
+void	fack_swap(t_list **stack)
+{
+	int	tmp;
+
+	if (!*stack || !(*stack)->next)
+		return ;
+	tmp = (*stack)->content;
+	(*stack)->content = (*stack)->next->content;
+	(*stack)->next->content = tmp;
+}
+
 int main(int ac, char **av)
 {
 	int i = 0;
@@ -286,46 +309,75 @@ int main(int ac, char **av)
 	{
 		ft_lstadd_back(&stack_a, ft_lstnew(atoi(c[i])));
 	}
-	stack_a->size = i;
+	int size;
+	size = i;
+	is_sorted(stack_a);
 	t_list *tempe_head = ft_lstlast(stack_a);
-	aff(stack_a, stack_b, stack_a->size);
-	if (stack_a->size <= 3)
+	// aff(stack_a, stack_b, size);
+
+	if (size <= 3)
+	{	// Sort 3
 		sort_III(&stack_a);
-	else if (stack_a->size <= 5)
+		aff(stack_a, stack_b, size);
+	}
+	else if (size <= 5)
+	{	// Sort 5
 		sort_V(&stack_a, &stack_b);
-	else if (stack_a->size > 5)
-	{
+		aff(stack_a, stack_b, size);
+	}
+	else if (size > 5)
+	{	// Big Sort
+		// fack_swap(&stack_a);
 		if (tempe_head->next == NULL)
 			tempe_head->next = stack_a;
-		// make_head;
-		t_list *head = __find_lis_head(&stack_a, stack_a->size);
-
+			// Markup_head
+		t_list *head = __find_lis_head(&stack_a, size);
 		printf("\n\tMarkup Head -> |%d|\n\n", head->content);
-		int tmp_size = stack_a->size;
+		
+		int tmp_size = size;
 		while (tmp_size)
 		{
 			if (head->flag == 1)
-				printf(" |%d| . ", head->content);
+				printf(" |%d|  ", head->content);
 			head = head->next;
 			tmp_size--;
 		}
-		tmp_size = stack_a->size;
+		if (tempe_head->next ==  stack_a)
+			tempe_head->next = NULL;
 		puts("\n");
-		// while (tmp_size)
-		// {
-		// 	tmp_size--;
-		// }
-		// for (i = 0; i < tmp_size; i++)
-		// {
-		// 	printf("%d :: %d \n", i, head->flag);
-		// 	if (head->flag == 0)
-		// 		pb(&stack_b, &stack_a, stack_a->size);
-		// 	else if (head->flag == 1)
-		// 		ra(&stack_a, stack_a->size);
-		// 	printf("%d end\n", i);
-		// 	aff(stack_a, stack_b, stack_a->size);
-		// }
-	}
+		indx_stack(&stack_a);
+		// aff(stack_a, stack_b, size);
+		//****************************************************************
+		t_list *tempo=NULL;
+		tempo = stack_a;
+		int flag_size=0;
+		while(tempo)
+		{
+			if (tempo->flag == 0)
+				flag_size++;
+			tempo=tempo->next;
+		}
+		// puts("-----------------------------------");
+		
+		push_flag0_b(&stack_a, &stack_b);
+		// aff(stack_a, stack_b, size);
+		int big_size = ft_lstsize(stack_a) > ft_lstsize(stack_b) ? ft_lstsize(stack_a) : ft_lstsize(stack_b); 
+		aff(stack_a, stack_b, big_size);
 
+		int *str;
+		str = malloc(ft_lstsize(stack_a) * sizeof(int));
+		i = 0;
+		while (stack_a)
+		{
+			str[i] = stack_a->content;
+			stack_a = stack_a->next;
+			printf("|%d|\t", str[i]);
+			i++;
+		}
+		puts("\n");
+
+		//****************************************************************
+
+	}
 	return 0;
 }
