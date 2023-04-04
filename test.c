@@ -90,18 +90,24 @@ void	moves_indx(t_list **stack_a, t_list **stack_b)
 	t_list *first_tmp = *stack_a;
 	t_list *second_tmp = (*stack_a)->next;
 	t_list *b_tmp = *stack_b;
-	int *moves;
 	int i = 0;
-	moves = (int *)malloc(sizeof(int)*ft_lstsize(*stack_b));
+	printf("moves table from here *********\n");
 	while(b_tmp)
 	{
 		first_tmp = *stack_a;
 		second_tmp = (*stack_a)->next;
 		while(second_tmp)
 		{
-			if (b_tmp->content > first_tmp->content && b_tmp->content < second_tmp->content)
+			if (b_tmp->content < first_tmp->content)
 			{
-				moves[i] = 1 + best_moves(*stack_b, b_tmp) + best_moves(*stack_a, second_tmp);
+				b_tmp->movs = 1 + best_moves(*stack_b, b_tmp);
+				printf("|%d|\t", b_tmp->movs);
+				break;
+			}
+			else if (b_tmp->content > first_tmp->content && b_tmp->content < second_tmp->content)
+			{
+				b_tmp->movs = 1 + best_moves(*stack_b, b_tmp) + best_moves(*stack_a, second_tmp);
+				printf("|%d|\t", b_tmp->movs);
 				break;
 			}
 			second_tmp = second_tmp->next;
@@ -110,9 +116,5 @@ void	moves_indx(t_list **stack_a, t_list **stack_b)
 		i++;
 		b_tmp = b_tmp->next;
 	}
-	
-	printf("moves table from here *********\n");
-	for(long j = 0; j < (long)ft_lstsize(*stack_b); j++)
-		printf("|%d|\t", moves[j]);
 	printf("\nmoves table ends here *********\n");
 }
