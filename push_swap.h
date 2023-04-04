@@ -14,6 +14,7 @@ typedef struct	s_list
 	int indx;
 	int content;
 	int flag;
+	int movs;
 	struct s_list *next;
 } t_list;
 
@@ -62,5 +63,8 @@ void	indx_stack(t_list **stack);
 void	fun1(t_list **stack_a, t_list **stack_b, t_list *test, int a);
 int		fun(t_list *stack, t_list *elem);
 void	push_flag0_b(t_list **stack_a, t_list **stack_b);
+void	oli(t_list **stack_a, t_list *test, int a);
+int		moves_to_be_in_top(t_list *stack,t_list *elem);
+void	re_moves(t_list **stack_a, t_list **stack_b);
 
 #endif

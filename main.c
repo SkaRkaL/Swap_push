@@ -328,12 +328,13 @@ int main(int ac, char **av)
 	else if (size > 5)
 	{	// Big Sort
 		// fack_swap(&stack_a);
+		//****************************************************************
 		if (tempe_head->next == NULL)
 			tempe_head->next = stack_a;
 			// Markup_head
-		t_list *head = __find_lis_head(&stack_a, size);
-		printf("\n\tMarkup Head -> |%d|\n\n", head->content);
-		
+		t_list *Markup_head = __find_lis_head(&stack_a, size);
+		printf("\n\tMarkup Head -> |%d|\n\n", Markup_head->content);
+		t_list *head = Markup_head;
 		int tmp_size = size;
 		while (tmp_size)
 		{
@@ -344,6 +345,7 @@ int main(int ac, char **av)
 		}
 		if (tempe_head->next ==  stack_a)
 			tempe_head->next = NULL;
+		//****************************************************************
 		puts("\n");
 		indx_stack(&stack_a);
 		// aff(stack_a, stack_b, size);
@@ -357,27 +359,22 @@ int main(int ac, char **av)
 				flag_size++;
 			tempo=tempo->next;
 		}
-		// puts("-----------------------------------");
 		
 		push_flag0_b(&stack_a, &stack_b);
-		// aff(stack_a, stack_b, size);
 		int big_size = ft_lstsize(stack_a) > ft_lstsize(stack_b) ? ft_lstsize(stack_a) : ft_lstsize(stack_b); 
 		aff(stack_a, stack_b, big_size);
-
-		int *str;
-		str = malloc(ft_lstsize(stack_a) * sizeof(int));
-		i = 0;
-		while (stack_a)
-		{
-			str[i] = stack_a->content;
-			stack_a = stack_a->next;
-			printf("|%d|\t", str[i]);
-			i++;
-		}
+		printf("\n\t-A7seeen Head ----> %d\n", Markup_head->content);
+		oli(&stack_a, Markup_head, fun(stack_a, Markup_head));
 		puts("\n");
+		aff(stack_a, stack_b, big_size);
+		re_moves(&stack_a, &stack_b);
+
+		puts("\n");
+		printf("iddx  %d", stack_b->indx);
+		puts("\n");
+		printf("iddx  %d", stack_b->next->indx);
 
 		//****************************************************************
-
 	}
 	return 0;
 }
