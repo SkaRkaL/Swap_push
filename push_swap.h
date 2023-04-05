@@ -15,6 +15,7 @@ typedef struct	s_list
 	int content;
 	int flag;
 	int movs;
+	int min_move;
 	struct s_list *next;
 } t_list;
 
@@ -64,7 +65,8 @@ void	fun1(t_list **stack_a, t_list **stack_b, t_list *test, int a);
 int		fun(t_list *stack, t_list *elem);
 void	push_flag0_b(t_list **stack_a, t_list **stack_b);
 void	mn_te7t_lfo9(t_list **stack_a, t_list *test, int a);
-int		best_moves(t_list *stack,t_list *elem);
+int		be_to_the_top(t_list *stack,t_list *elem);
 void	moves_indx(t_list **stack_a, t_list **stack_b);
+void	push_b_to_a(t_list **stack_b, t_list **stack_a, int i);
 
 #endif

@@ -56,7 +56,7 @@ void	push_flag0_b(t_list **stack_a, t_list **stack_b)
 	}
 }
 
-int best_moves(t_list *stack,t_list *elem)
+int be_to_the_top(t_list *stack,t_list *elem)
 {
 	int i = 0;
 	t_list *tmp = stack;
@@ -87,8 +87,8 @@ int best_moves(t_list *stack,t_list *elem)
 
 void	moves_indx(t_list **stack_a, t_list **stack_b)
 {
-	t_list *first_tmp = *stack_a;
-	t_list *second_tmp = (*stack_a)->next;
+	t_list *first_tmp;
+	t_list *second_tmp;
 	t_list *b_tmp = *stack_b;
 	int i = 0;
 	printf("moves table from here *********\n");
@@ -100,13 +100,13 @@ void	moves_indx(t_list **stack_a, t_list **stack_b)
 		{
 			if (b_tmp->content < first_tmp->content)
 			{
-				b_tmp->movs = 1 + best_moves(*stack_b, b_tmp);
-				printf("|%d|\t", b_tmp->movs);
+				b_tmp->movs = be_to_the_top(*stack_b, b_tmp);
+				printf("here : |%d|\t", b_tmp->movs);
 				break;
 			}
 			else if (b_tmp->content > first_tmp->content && b_tmp->content < second_tmp->content)
 			{
-				b_tmp->movs = 1 + best_moves(*stack_b, b_tmp) + best_moves(*stack_a, second_tmp);
+				b_tmp->movs = 1 + be_to_the_top(*stack_b, b_tmp) + be_to_the_top(*stack_a, second_tmp);
 				printf("|%d|\t", b_tmp->movs);
 				break;
 			}
@@ -117,4 +117,28 @@ void	moves_indx(t_list **stack_a, t_list **stack_b)
 		b_tmp = b_tmp->next;
 	}
 	printf("\nmoves table ends here *********\n");
+}
+
+void	push_b_to_a(t_list **stack_b, t_list **stack_a, int i)
+{
+	(void)i;
+	t_list *first_tmp;
+	t_list *second_tmp;
+	t_list *stack = *stack_b;
+
+	while(stack)
+	{
+		t_list *b_tmp = *stack_b;
+		first_tmp = *stack_a;
+		second_tmp = (*stack_a)->next;
+		mn_te7t_lfo9(stack_b, b_tmp, fun(*stack_b, b_tmp));
+		if(b_tmp->content < first_tmp->content)
+		{
+			pa(stack_a, stack_b, ft_lstsize(*stack_b));
+		}
+		moves_indx(stack_a, stack_b);
+		second_tmp = second_tmp->next;
+		first_tmp = first_tmp->next;
+		stack = stack->next;
+	}
 }

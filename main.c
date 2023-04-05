@@ -360,7 +360,23 @@ int main(int ac, char **av)
 		moves_indx(&stack_a, &stack_b);
 		puts("\n");
 
-
+		//********** GET BEST MOVE **************
+		stack_b->min_move = 1;
+		t_list *helper = stack_b;
+		while (ft_lstsize(helper))
+		{
+			t_list *helper1 = stack_b->next;
+			while (ft_lstsize(helper1)) {
+				if (helper->movs < helper1->movs)
+					stack_b->min_move = helper->movs;
+				helper1 = helper1->next;
+			}
+			helper = helper->next;
+		}
+		printf("min_move : |%d|  content : |%d|\n", stack_b->min_move, stack_b->content);
+		//**************************************
+		// loop over stack_b, find least amount of moves, send
+		// push_b_to_a(&stack_b, &stack_a, stack_b->min_move);
 	}
 	return 0;
 }
