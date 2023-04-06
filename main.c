@@ -385,6 +385,7 @@ int main(int ac, char **av)
 		if (tempe_head->next == NULL)
 			tempe_head->next = stack_a;
 		t_list *Markup_head = __find_lis_head(&stack_a, size);
+		(void)Markup_head;
 		// printf("\n\tMarkup Head -> |%d|\n\n", Markup_head->content);
 		if (tempe_head->next ==  stack_a)
 			tempe_head->next = NULL;
@@ -404,9 +405,9 @@ int main(int ac, char **av)
 		push_flag0_b(&stack_a, &stack_b);
 		// puts("\tBefooooore Msimna");
 		// aff(stack_a, stack_b, big_size);
-		t_list *sort_a = stack_a;
-		mn_te7t_lfo9(&sort_a, Markup_head, fun(sort_a, Markup_head));
-		aff(stack_a, stack_b, ft_lstsize(stack_b));
+		// t_list *sort_a = stack_a;
+		// mn_te7t_lfo9(&sort_a, Markup_head, fun(sort_a, Markup_head));
+		aff(stack_a, stack_b, ft_lstsize(stack_a));
 		// puts("\tAfteeeeer Msimna\n");
 		moves_indx(&stack_a, &stack_b);
 		// puts("\n");
