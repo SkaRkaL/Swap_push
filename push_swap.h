@@ -11,7 +11,7 @@
 typedef struct	s_list
 {
 	struct s_list *prev;
-	int size;
+	struct s_list *place;
 	int indx;
 	int content;
 	int flag;
@@ -69,5 +69,7 @@ void	mn_te7t_lfo9(t_list **stack_a, t_list *test, int a);
 int		be_to_the_top(t_list *stack,t_list *elem);
 void	moves_indx(t_list **stack_a, t_list **stack_b);
 void	push_b_to_a(t_list **stack_b, t_list **stack_a, t_list *bst_contnt);
+t_list	*max_element(t_list *stack);
+t_list	*min_element(t_list *a);
 
 #endif

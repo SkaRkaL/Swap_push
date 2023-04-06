@@ -84,14 +84,13 @@ void aff(t_list *stack_a, t_list *stack_b, int size)
 	{
 		if (stack_a)
 		{
-			printf("%d", stack_a->content);
-			// printf("%d| %d", stack_a->content,stack_a->indx);
+			printf("%d| %d\t", stack_a->content, stack_a->flag);
 			// printf("------> %d",stack_a->indx);
 			stack_a = stack_a->next;
 		}
 		if (stack_b)
 		{
-			printf("\t%d|\t%d\t|\t%d", stack_b->content, stack_b->indx, stack_b->movs);
+			printf("%d| %d", stack_b->content, stack_b->movs);
 			// printf("------> %d",stack_b->flag);
 			stack_b = stack_b->next;
 		}
@@ -204,8 +203,8 @@ t_list *__find_lis_head(t_list **stack, int full_size)
 		head = head->next;
 		size--;
 	}
-	printf("len -> %d\n", len);
-	puts("----here-----");
+	// printf("len -> %d\n", len);
+	// puts("----here-----");
 	t_list *indexing = *stack;
 	int lenght = full_size;
 	int tmp = full_size;
@@ -231,17 +230,6 @@ t_list *__find_lis_head(t_list **stack, int full_size)
 			indexing->flag = 0;
 		tmp--;
 		indexing = indexing->next;
-	}
-	int ll = full_size;
-	t_list *tmpe = *stack;
-	while (ll)
-	{
-		if (tmpe->flag == 1)
-			printf("Flag -->  1        |%d|\n", tmpe->content);
-		else
-			printf("Flag -> 0   |%d|\n", tmpe->content);
-		tmpe = tmpe->next;
-		ll--;
 	}
 	return (ret);
 }
@@ -289,22 +277,8 @@ t_list *get_best_move(t_list *stack_b)
 		tmp = tmp->next;
 	}
 	return (NULL);
-	// t_list *helper = stack_b;
-	// t_list *last_cntnt;
-	// while (ft_lstsize(helper))
-	// {
-	// 	t_list *helper1 = stack_b->next;
-	// 	while (ft_lstsize(helper1)) 
-	// 	{
-	// 		if (helper->movs < helper1->movs)
-	// 			stack_b->min_move = helper->movs;
-	// 		helper1 = helper1->next;
-	// 	}
-	// 	last_cntnt = helper;
-	// 	helper = helper->next;
-	// }
-	// return (last_cntnt);
 }
+
 t_list *min_element(t_list *a)
 {
 	int	min = a->content;
@@ -326,6 +300,26 @@ t_list *min_element(t_list *a)
 	return (NULL);
 }
 
+t_list *max_element(t_list *stack)
+{
+	int	max = stack->content;
+	t_list *tmp = stack;
+	while (tmp->next)
+	{
+		if (max < tmp->next->content)
+		{
+			max = tmp->next->content;
+		}
+		tmp = tmp->next;
+	}
+	while (stack)
+	{
+		if (stack->content == max)
+			return (stack);
+		stack = stack->next;
+	}
+	return (NULL);
+}
 
 int main(int ac, char **av)
 {
@@ -387,16 +381,16 @@ int main(int ac, char **av)
 	{	// Big Sort
 		// ***********************************************************
 			// Markup_head
-		int big_size = ft_lstsize(stack_a);
+		// int big_size = ft_lstsize(stack_a);
 		if (tempe_head->next == NULL)
 			tempe_head->next = stack_a;
 		t_list *Markup_head = __find_lis_head(&stack_a, size);
-		printf("\n\tMarkup Head -> |%d|\n\n", Markup_head->content);
+		// printf("\n\tMarkup Head -> |%d|\n\n", Markup_head->content);
 		if (tempe_head->next ==  stack_a)
 			tempe_head->next = NULL;
 		// ***********************************************************
 		indx_stack(&stack_a);
-		aff(stack_a, stack_b,big_size);
+		aff(stack_a, stack_b,ft_lstsize(stack_a));
 		// ********************************
 		t_list *tempo=NULL;
 		tempo = stack_a;
@@ -408,35 +402,30 @@ int main(int ac, char **av)
 			tempo=tempo->next;
 		}
 		push_flag0_b(&stack_a, &stack_b);
-		puts("\tBefooooore Msimna");
+		// puts("\tBefooooore Msimna");
 		// aff(stack_a, stack_b, big_size);
-		mn_te7t_lfo9(&stack_a, Markup_head, fun(stack_a, Markup_head));
-		// aff(stack_a, stack_b, big_size);
-		puts("\tAfteeeeer Msimna\n");
+		t_list *sort_a = stack_a;
+		mn_te7t_lfo9(&sort_a, Markup_head, fun(sort_a, Markup_head));
+		aff(stack_a, stack_b, ft_lstsize(stack_b));
+		// puts("\tAfteeeeer Msimna\n");
 		moves_indx(&stack_a, &stack_b);
-		puts("\n");
-		aff(stack_a, stack_b, big_size);
-		puts("\n");
+		// puts("\n");
+		// aff(stack_a, stack_b, big_size);
+		// puts("\n");
 
 		// ********** GET BEST MOVE **************
 		// printf("min_move : |%d|  content : |%d|\n", stack_b->min_move);
-		t_list *a = stack_a;
+		// t_list *a = stack_a;
 		t_list *b = stack_b;
 		i = ft_lstsize(b);
 		while (i--)
 		{
-			printf("--------------------------------->Full Size de Stack B = |%d|\n", i);
-			printf("BEST CONTENT --------> |%d|\n", get_best_move(b)->content);
-			push_b_to_a(&b, &a, get_best_move(b));
-			mn_te7t_lfo9(&a, min_element(a), fun(a, min_element(a)));
-			printf("MIN CONTENT --------> |%d|\n", min_element(a)->content);
-			aff(a, b, big_size);
-			printf("stack size %d\n", ft_lstsize(b));
-			// i = ft_lstsize(b);
-			// b = b->next;
+			// printf("--------------------------------->Full Size de Stack B = |%d|\n", i);
+			// printf("BEST CONTENT --------> |%d|\n", get_best_move(stack_b)->content);
+			push_b_to_a(&stack_b, &stack_a, get_best_move(stack_b));
 		}
-
-		aff(stack_a, stack_b, big_size);
+		mn_te7t_lfo9(&stack_a, min_element(stack_a), fun(stack_a, min_element(stack_a)));
+		aff(stack_a, stack_b, ft_lstsize(stack_a));
 		// **************************************
 	}
 	return 0;
