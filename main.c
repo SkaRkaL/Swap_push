@@ -84,13 +84,13 @@ void aff(t_list *stack_a, t_list *stack_b, int size)
 	{
 		if (stack_a)
 		{
-			printf("%d|%d", stack_a->content,stack_a->indx);
+			printf("%d| %d", stack_a->content,stack_a->indx);
 			// printf("------> %d",stack_a->indx);
 			stack_a = stack_a->next;
 		}
 		if (stack_b)
 		{
-			printf("\t%d|%d", stack_b->content,stack_b->indx);
+			printf("\t%d|\t%d\t|\t%d", stack_b->content, stack_b->indx, stack_b->movs);
 			// printf("------> %d",stack_b->flag);
 			stack_b = stack_b->next;
 		}
@@ -269,6 +269,63 @@ void	fack_swap(t_list **stack)
 	(*stack)->next->content = tmp;
 }
 
+t_list *get_best_move(t_list *stack_b)
+{
+	stack_b->min_move = INT_MAX;
+	t_list *tmp = stack_b;
+	int	i = ft_lstsize(stack_b);
+	while (i--)
+	{
+		if (tmp->movs < stack_b->min_move)
+			stack_b->min_move = tmp->movs;
+		tmp = tmp->next;
+	}
+	tmp = stack_b;
+	while (tmp)
+	{
+		if (tmp->movs == stack_b->min_move)
+			return (tmp);
+		tmp = tmp->next;
+	}
+	return (NULL);
+	// t_list *helper = stack_b;
+	// t_list *last_cntnt;
+	// while (ft_lstsize(helper))
+	// {
+	// 	t_list *helper1 = stack_b->next;
+	// 	while (ft_lstsize(helper1)) 
+	// 	{
+	// 		if (helper->movs < helper1->movs)
+	// 			stack_b->min_move = helper->movs;
+	// 		helper1 = helper1->next;
+	// 	}
+	// 	last_cntnt = helper;
+	// 	helper = helper->next;
+	// }
+	// return (last_cntnt);
+}
+t_list *min_element(t_list *a)
+{
+	int	min = a->content;
+	t_list *tmp = a;
+	while (tmp)
+	{
+		if (min > tmp->content)
+		{
+			min = tmp->content;
+		}
+		tmp = tmp->next;
+	}
+	while (a)
+	{
+		if (a->content == min)
+			return (a);
+		a = a->next;
+	}
+	return (NULL);
+}
+
+
 int main(int ac, char **av)
 {
 	int i = 0;
@@ -327,18 +384,19 @@ int main(int ac, char **av)
 	}
 	else if (size > 5)
 	{	// Big Sort
-		// fack_swap(&stack_a);
-		//***********************************************************
+		// ***********************************************************
 			// Markup_head
+		int big_size = ft_lstsize(stack_a);
 		if (tempe_head->next == NULL)
 			tempe_head->next = stack_a;
 		t_list *Markup_head = __find_lis_head(&stack_a, size);
 		printf("\n\tMarkup Head -> |%d|\n\n", Markup_head->content);
 		if (tempe_head->next ==  stack_a)
 			tempe_head->next = NULL;
-		//***********************************************************
+		// ***********************************************************
 		indx_stack(&stack_a);
-		//********************************
+		aff(stack_a, stack_b,big_size);
+		// ********************************
 		t_list *tempo=NULL;
 		tempo = stack_a;
 		int flag_size=0;
@@ -348,35 +406,38 @@ int main(int ac, char **av)
 				flag_size++;
 			tempo=tempo->next;
 		}
-		
 		push_flag0_b(&stack_a, &stack_b);
-		int big_size = ft_lstsize(stack_a) > ft_lstsize(stack_b) ? ft_lstsize(stack_a) : ft_lstsize(stack_b);
 		puts("\tBefooooore Msimna");
+		// aff(stack_a, stack_b, big_size);
 		mn_te7t_lfo9(&stack_a, Markup_head, fun(stack_a, Markup_head));
-		puts("\tAfteeeeer Msimna");
+		// aff(stack_a, stack_b, big_size);
+		puts("\tAfteeeeer Msimna\n");
+		moves_indx(&stack_a, &stack_b);
 		puts("\n");
 		aff(stack_a, stack_b, big_size);
 		puts("\n");
-		moves_indx(&stack_a, &stack_b);
-		puts("\n");
 
-		//********** GET BEST MOVE **************
-		stack_b->min_move = 1;
-		t_list *helper = stack_b;
-		while (ft_lstsize(helper))
+		// ********** GET BEST MOVE **************
+		// printf("min_move : |%d|  content : |%d|\n", stack_b->min_move);
+		t_list *a = stack_a;
+		t_list *b = stack_b;
+		i = ft_lstsize(b);
+		while (i--)
 		{
-			t_list *helper1 = stack_b->next;
-			while (ft_lstsize(helper1)) {
-				if (helper->movs < helper1->movs)
-					stack_b->min_move = helper->movs;
-				helper1 = helper1->next;
-			}
-			helper = helper->next;
+			printf("--------------------------------->Full Size de Stack B = |%d|\n", i);
+			printf("BEST CONTENT --------> |%d|\n", get_best_move(b)->content);
+			push_b_to_a(&b, &a, get_best_move(b));
+			// mn_te7t_lfo9(&a, min_element(a), fun(a, min_element(a)));
+			printf("MIN CONTENT --------> |%d|\n", min_element(a)->content);
+			aff(a, b, big_size);
+			printf("stack size %d\n", ft_lstsize(b));
+			// i = ft_lstsize(b);
+			// b = b->next;
 		}
-		printf("min_move : |%d|  content : |%d|\n", stack_b->min_move, stack_b->content);
-		//**************************************
-		// loop over stack_b, find least amount of moves, send
-		// push_b_to_a(&stack_b, &stack_a, stack_b->min_move);
+
+		aff(stack_a, stack_b, big_size);
+		// **************************************
 	}
 	return 0;
 }
+

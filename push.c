@@ -26,4 +26,5 @@ void	pa(t_list **stack_a, t_list **stack_b, int indx_b)
 	*stack_a = tmp;
 		puts("pa");
 	indx_stack(stack_a);
+	indx_stack(stack_b);
 }

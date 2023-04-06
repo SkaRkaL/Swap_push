@@ -16,6 +16,7 @@ void	sa(t_list **stack, int index)
 	swap(stack);
 	if (index)
 		puts("sa");
+	indx_stack(stack);
 }
 
 void	sb(t_list **stack, int index)
@@ -23,6 +24,7 @@ void	sb(t_list **stack, int index)
 	swap(stack);
 	if (index)
 		puts("sb");
+	indx_stack(stack);
 }
 
 void	ss(t_list **stack_a, t_list **stack_b, int index)

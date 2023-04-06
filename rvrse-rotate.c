@@ -21,7 +21,7 @@ void	rrb(t_list **stack_b, int index)
 {
 	reverse_rotate(stack_b);
 	if(index)
-		puts("rra");
+		puts("rrb");
 	indx_stack(stack_b);
 }
 

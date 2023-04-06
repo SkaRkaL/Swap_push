@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <limits.h>
 #include <ctype.h>
 
 typedef struct	s_list
@@ -58,7 +59,7 @@ void	sort_V(t_list **stack_a, t_list **stack_b);
 int		max_min_element(t_list *stack, int *ret_min);
 
 
-
+void aff(t_list *stack_a, t_list *stack_b, int size);
 
 void	indx_stack(t_list **stack);
 void	fun1(t_list **stack_a, t_list **stack_b, t_list *test, int a);
@@ -67,6 +68,6 @@ void	push_flag0_b(t_list **stack_a, t_list **stack_b);
 void	mn_te7t_lfo9(t_list **stack_a, t_list *test, int a);
 int		be_to_the_top(t_list *stack,t_list *elem);
 void	moves_indx(t_list **stack_a, t_list **stack_b);
-void	push_b_to_a(t_list **stack_b, t_list **stack_a, int i);
+void	push_b_to_a(t_list **stack_b, t_list **stack_a, t_list *bst_contnt);
 
 #endif
