@@ -84,7 +84,8 @@ void aff(t_list *stack_a, t_list *stack_b, int size)
 	{
 		if (stack_a)
 		{
-			printf("%d| %d", stack_a->content,stack_a->indx);
+			printf("%d", stack_a->content);
+			// printf("%d| %d", stack_a->content,stack_a->indx);
 			// printf("------> %d",stack_a->indx);
 			stack_a = stack_a->next;
 		}
@@ -427,7 +428,7 @@ int main(int ac, char **av)
 			printf("--------------------------------->Full Size de Stack B = |%d|\n", i);
 			printf("BEST CONTENT --------> |%d|\n", get_best_move(b)->content);
 			push_b_to_a(&b, &a, get_best_move(b));
-			// mn_te7t_lfo9(&a, min_element(a), fun(a, min_element(a)));
+			mn_te7t_lfo9(&a, min_element(a), fun(a, min_element(a)));
 			printf("MIN CONTENT --------> |%d|\n", min_element(a)->content);
 			aff(a, b, big_size);
 			printf("stack size %d\n", ft_lstsize(b));
