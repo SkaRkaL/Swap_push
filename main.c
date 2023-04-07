@@ -405,8 +405,7 @@ int main(int ac, char **av)
 		push_flag0_b(&stack_a, &stack_b);
 		// puts("\tBefooooore Msimna");
 		// aff(stack_a, stack_b, big_size);
-		// t_list *sort_a = stack_a;
-		// mn_te7t_lfo9(&sort_a, Markup_head, fun(sort_a, Markup_head));
+		// mn_te7t_lfo9(&stack_a, Markup_head, fun(stack_a, Markup_head));
 		aff(stack_a, stack_b, ft_lstsize(stack_a));
 		// puts("\tAfteeeeer Msimna\n");
 		moves_indx(&stack_a, &stack_b);
@@ -419,6 +418,8 @@ int main(int ac, char **av)
 		// t_list *a = stack_a;
 		t_list *b = stack_b;
 		i = ft_lstsize(b);
+		// ********** LMOCHKIIIL KIBDA MN HNA **************
+		// ********** West LooP **************
 		while (i--)
 		{
 			// printf("--------------------------------->Full Size de Stack B = |%d|\n", i);
