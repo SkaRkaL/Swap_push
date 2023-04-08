@@ -374,12 +374,12 @@ int main(int ac, char **av)
 	if (size <= 3)
 	{ // Sort 3
 		sort_III(&stack_a);
-		aff(stack_a, stack_b, size);
+		// aff(stack_a, stack_b, size);
 	}
 	else if (size <= 5)
 	{ // Sort 5
 		sort_V(&stack_a, &stack_b);
-		aff(stack_a, stack_b, size);
+		// aff(stack_a, stack_b, size);
 	}
 	else if (size > 5)
 	{ // Big Sort
@@ -395,7 +395,7 @@ int main(int ac, char **av)
 			tempe_head->next = NULL;
 		// ***********************************************************
 		indx_stack(&stack_a);
-		aff(stack_a, stack_b, ft_lstsize(stack_a));
+							// aff(stack_a, stack_b, ft_lstsize(stack_a));
 		// ********************************
 		t_list *tempo = NULL;
 		tempo = stack_a;
@@ -411,7 +411,7 @@ int main(int ac, char **av)
 		// aff(stack_a, stack_b, big_size);
 		// mn_te7t_lfo9(&stack_a, Markup_head, fun(stack_a, Markup_head));
 		moves_indx(&stack_a, &stack_b);
-		aff(stack_a, stack_b, mymax(ft_lstsize(stack_a), ft_lstsize(stack_b)));
+					// aff(stack_a, stack_b, mymax(ft_lstsize(stack_a), ft_lstsize(stack_b)));
 		// puts("\tAfteeeeer Msimna\n");
 		// puts("\n");
 		// aff(stack_a, stack_b, big_size);
@@ -431,7 +431,7 @@ int main(int ac, char **av)
 			push_b_to_a(&stack_b, &stack_a, get_best_move(stack_b));
 		}
 		mn_te7t_lfo9(&stack_a, min_element(stack_a), fun(stack_a, min_element(stack_a)));
-		aff(stack_a, stack_b, ft_lstsize(stack_a));
+						// aff(stack_a, stack_b, ft_lstsize(stack_a));
 	}
 	return 0;
 }

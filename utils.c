@@ -127,20 +127,12 @@ void	moves_indx(t_list **stack_a, t_list **stack_b)
 					
 					if (b_tmp->content > first_tmp->content && b_tmp->content < second_tmp->content)
 					{
-						if (b_tmp->content == 56 || b_tmp->content == 31)
-						{
-							printf("{{{{{{{{{%d %d %d}}}}}}}}}\n",first_tmp->content , b_tmp->content , second_tmp->content);
-						}
 						b_tmp->movs = 1 + be_to_the_top(*stack_b, b_tmp) + be_to_the_top(*stack_a, second_tmp);
 						b_tmp->place = second_tmp;
 						break;
 					}
 					if (b_tmp->content < first_tmp->content && b_tmp->content > ft_lstlast(first_tmp)->content)
 					{
-						if (b_tmp->content == 56 || b_tmp->content == 31)
-						{
-							printf("{{{{{{{{{--%d %d %d--}}}}}}}}}\n",first_tmp->content , b_tmp->content , ft_lstlast(first_tmp)->content);
-						}
 						b_tmp->movs = 1;
 						b_tmp->place = first_tmp;
 						break;
@@ -157,7 +149,7 @@ void	moves_indx(t_list **stack_a, t_list **stack_b)
 int	stack_top_bottom(t_list *stack, t_list *best_cntnt)
 {
 	int	size = ft_lstsize(stack);
-	int i =0;
+	int i = 0;
 	while (stack->content != best_cntnt->content)
 	{
 		i++;
@@ -175,9 +167,8 @@ int	mymax(int a, int b)
 }
 void	push_b_to_a(t_list **stack_b, t_list **stack_a, t_list *bst_contnt)
 {
-	printf("----------------> bst_contnt %d\n", bst_contnt->place->content);
+	// printf("----------------> bst_contnt %d\n", bst_contnt->place->content);
 	moves_indx(stack_a, stack_b);
-	// mn_te7t_lfo9(stack_a, bst_contnt->place, fun(*stack_a, bst_contnt->place));
 	if (stack_top_bottom(*stack_a, bst_contnt->place) && stack_top_bottom(*stack_b, bst_contnt))
 	{
 		while ((*stack_a)->content != bst_contnt->place->content
@@ -202,22 +193,19 @@ void	push_b_to_a(t_list **stack_b, t_list **stack_a, t_list *bst_contnt)
 		while ((*stack_b)->content != bst_contnt->content)
 			rrb(stack_b, 1);
 	}
-	else if (stack_top_bottom(*stack_a, bst_contnt->place) || !stack_top_bottom(*stack_b, bst_contnt))
+	else if (stack_top_bottom(*stack_a, bst_contnt->place) && !stack_top_bottom(*stack_b, bst_contnt))
 	{
 		while ((*stack_a)->content != bst_contnt->place->content)
 			ra(stack_a, 1);
 		while ((*stack_b)->content != bst_contnt->content)
 			rrb(stack_b, 1);
 	}
-	else if (!stack_top_bottom(*stack_a, bst_contnt->place) || stack_top_bottom(*stack_b, bst_contnt))
+	else if (!stack_top_bottom(*stack_a, bst_contnt->place) && stack_top_bottom(*stack_b, bst_contnt))
 	{
 		while ((*stack_a)->content != bst_contnt->place->content)
 			rra(stack_a, 1);
 		while ((*stack_b)->content != bst_contnt->content)
 			rb(stack_b, 1);
 	}
-	aff(*stack_a, *stack_b, mymax(ft_lstsize(*stack_a), ft_lstsize(*stack_b)));
-	// mn_te7t_lfo9_b(stack_b, bst_contnt, fun(*stack_b, bst_contnt));
 	pa(stack_a, stack_b, ft_lstsize(*stack_a));
-	// moves_indx(stack_a, stack_b);
 }
