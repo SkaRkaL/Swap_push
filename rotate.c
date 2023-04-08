@@ -34,4 +34,5 @@ void	rr(t_list **stack_a, t_list **stack_b, int index)
 	rotate(stack_b);
 	if (index)
 		puts("rr");
+	indx_stack(stack_a);
 }

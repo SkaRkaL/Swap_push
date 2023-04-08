@@ -88,6 +88,10 @@ void aff(t_list *stack_a, t_list *stack_b, int size)
 			// printf("------> %d",stack_a->indx);
 			stack_a = stack_a->next;
 		}
+		else
+		{
+			printf("  |   \t");
+		}
 		if (stack_b)
 		{
 			printf("%d| %d", stack_b->content, stack_b->movs);
@@ -234,25 +238,25 @@ t_list *__find_lis_head(t_list **stack, int full_size)
 	return (ret);
 }
 
-void	indx_stack(t_list **stack)
+void indx_stack(t_list **stack)
 {
 	t_list *tompo;
-		tompo = *stack;
-		int ahsseni=0;
-		while(tompo)
-		{
-			tompo->indx=ahsseni;
-			ahsseni++;
-			tompo=tompo->next;
-		}
+	tompo = *stack;
+	int i = 0;
+	while (tompo)
+	{
+		tompo->indx = i;
+		i++;
+		tompo = tompo->next;
+	}
 }
 
-void	fack_swap(t_list **stack)
+void fack_swap(t_list **stack)
 {
-	int	tmp;
+	int tmp;
 
 	if (!*stack || !(*stack)->next)
-		return ;
+		return;
 	tmp = (*stack)->content;
 	(*stack)->content = (*stack)->next->content;
 	(*stack)->next->content = tmp;
@@ -262,7 +266,7 @@ t_list *get_best_move(t_list *stack_b)
 {
 	stack_b->min_move = INT_MAX;
 	t_list *tmp = stack_b;
-	int	i = ft_lstsize(stack_b);
+	int i = ft_lstsize(stack_b);
 	while (i--)
 	{
 		if (tmp->movs < stack_b->min_move)
@@ -281,7 +285,7 @@ t_list *get_best_move(t_list *stack_b)
 
 t_list *min_element(t_list *a)
 {
-	int	min = a->content;
+	int min = a->content;
 	t_list *tmp = a;
 	while (tmp)
 	{
@@ -302,7 +306,7 @@ t_list *min_element(t_list *a)
 
 t_list *max_element(t_list *stack)
 {
-	int	max = stack->content;
+	int max = stack->content;
 	t_list *tmp = stack;
 	while (tmp->next)
 	{
@@ -368,47 +372,47 @@ int main(int ac, char **av)
 	// aff(stack_a, stack_b, size);
 
 	if (size <= 3)
-	{	// Sort 3
+	{ // Sort 3
 		sort_III(&stack_a);
 		aff(stack_a, stack_b, size);
 	}
 	else if (size <= 5)
-	{	// Sort 5
+	{ // Sort 5
 		sort_V(&stack_a, &stack_b);
 		aff(stack_a, stack_b, size);
 	}
 	else if (size > 5)
-	{	// Big Sort
+	{ // Big Sort
 		// ***********************************************************
-			// Markup_head
+		// Markup_head
 		// int big_size = ft_lstsize(stack_a);
 		if (tempe_head->next == NULL)
 			tempe_head->next = stack_a;
 		t_list *Markup_head = __find_lis_head(&stack_a, size);
 		(void)Markup_head;
 		// printf("\n\tMarkup Head -> |%d|\n\n", Markup_head->content);
-		if (tempe_head->next ==  stack_a)
+		if (tempe_head->next == stack_a)
 			tempe_head->next = NULL;
 		// ***********************************************************
 		indx_stack(&stack_a);
-		aff(stack_a, stack_b,ft_lstsize(stack_a));
+		aff(stack_a, stack_b, ft_lstsize(stack_a));
 		// ********************************
-		t_list *tempo=NULL;
+		t_list *tempo = NULL;
 		tempo = stack_a;
-		int flag_size=0;
-		while(tempo)
+		int flag_size = 0;
+		while (tempo)
 		{
 			if (tempo->flag == 0)
 				flag_size++;
-			tempo=tempo->next;
+			tempo = tempo->next;
 		}
 		push_flag0_b(&stack_a, &stack_b);
 		// puts("\tBefooooore Msimna");
 		// aff(stack_a, stack_b, big_size);
 		// mn_te7t_lfo9(&stack_a, Markup_head, fun(stack_a, Markup_head));
-		aff(stack_a, stack_b, ft_lstsize(stack_a));
-		// puts("\tAfteeeeer Msimna\n");
 		moves_indx(&stack_a, &stack_b);
+		aff(stack_a, stack_b, mymax(ft_lstsize(stack_a), ft_lstsize(stack_b)));
+		// puts("\tAfteeeeer Msimna\n");
 		// puts("\n");
 		// aff(stack_a, stack_b, big_size);
 		// puts("\n");
@@ -419,7 +423,7 @@ int main(int ac, char **av)
 		t_list *b = stack_b;
 		i = ft_lstsize(b);
 		// ********** LMOCHKIIIL KIBDA MN HNA **************
-		// ********** West LooP **************
+		// ********** Wst LooP **************
 		while (i--)
 		{
 			// printf("--------------------------------->Full Size de Stack B = |%d|\n", i);
@@ -432,4 +436,3 @@ int main(int ac, char **av)
 	}
 	return 0;
 }
-

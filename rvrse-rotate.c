@@ -31,4 +31,5 @@ void	rrr(t_list **stack_a, t_list **stack_b, int index)
 	reverse_rotate(stack_b);
 	if (index)
 		puts("rrr");
+	indx_stack(stack_a);
 }
