@@ -432,7 +432,6 @@ int main(int ac, char **av)
 		}
 		mn_te7t_lfo9(&stack_a, min_element(stack_a), fun(stack_a, min_element(stack_a)));
 		aff(stack_a, stack_b, ft_lstsize(stack_a));
-		// **************************************
 	}
 	return 0;
 }

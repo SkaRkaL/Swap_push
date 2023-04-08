@@ -132,7 +132,6 @@ void	moves_indx(t_list **stack_a, t_list **stack_b)
 							printf("{{{{{{{{{%d %d %d}}}}}}}}}\n",first_tmp->content , b_tmp->content , second_tmp->content);
 						}
 						b_tmp->movs = 1 + be_to_the_top(*stack_b, b_tmp) + be_to_the_top(*stack_a, second_tmp);
-						// printf("|%d|\t", b_tmp->movs);
 						b_tmp->place = second_tmp;
 						break;
 					}
