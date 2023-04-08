@@ -85,7 +85,6 @@ void aff(t_list *stack_a, t_list *stack_b, int size)
 		if (stack_a)
 		{
 			printf("%d| %d\t", stack_a->content, stack_a->flag);
-			// printf("------> %d",stack_a->indx);
 			stack_a = stack_a->next;
 		}
 		else
@@ -95,7 +94,6 @@ void aff(t_list *stack_a, t_list *stack_b, int size)
 		if (stack_b)
 		{
 			printf("%d| %d", stack_b->content, stack_b->movs);
-			// printf("------> %d",stack_b->flag);
 			stack_b = stack_b->next;
 		}
 		size--;
@@ -105,7 +103,6 @@ void aff(t_list *stack_a, t_list *stack_b, int size)
 	printf("------End-----\n");
 }
 
-// Check MAX & MIN f Stack
 int max_min_element(t_list *stack, int *ret_min)
 {
 	int max;
@@ -207,8 +204,6 @@ t_list *__find_lis_head(t_list **stack, int full_size)
 		head = head->next;
 		size--;
 	}
-	// printf("len -> %d\n", len);
-	// puts("----here-----");
 	t_list *indexing = *stack;
 	int lenght = full_size;
 	int tmp = full_size;
@@ -382,10 +377,7 @@ int main(int ac, char **av)
 		// aff(stack_a, stack_b, size);
 	}
 	else if (size > 5)
-	{ // Big Sort
-		// ***********************************************************
-		// Markup_head
-		// int big_size = ft_lstsize(stack_a);
+	{
 		if (tempe_head->next == NULL)
 			tempe_head->next = stack_a;
 		t_list *Markup_head = __find_lis_head(&stack_a, size);
@@ -407,31 +399,16 @@ int main(int ac, char **av)
 			tempo = tempo->next;
 		}
 		push_flag0_b(&stack_a, &stack_b);
-		// puts("\tBefooooore Msimna");
-		// aff(stack_a, stack_b, big_size);
-		// mn_te7t_lfo9(&stack_a, Markup_head, fun(stack_a, Markup_head));
 		moves_indx(&stack_a, &stack_b);
 					// aff(stack_a, stack_b, mymax(ft_lstsize(stack_a), ft_lstsize(stack_b)));
-		// puts("\tAfteeeeer Msimna\n");
-		// puts("\n");
-		// aff(stack_a, stack_b, big_size);
-		// puts("\n");
-
-		// ********** GET BEST MOVE **************
-		// printf("min_move : |%d|  content : |%d|\n", stack_b->min_move);
-		// t_list *a = stack_a;
 		t_list *b = stack_b;
 		i = ft_lstsize(b);
-		// ********** LMOCHKIIIL KIBDA MN HNA **************
-		// ********** Wst LooP **************
 		while (i--)
 		{
-			// printf("--------------------------------->Full Size de Stack B = |%d|\n", i);
-			// printf("BEST CONTENT --------> |%d|\n", get_best_move(stack_b)->content);
 			push_b_to_a(&stack_b, &stack_a, get_best_move(stack_b));
 		}
 		mn_te7t_lfo9(&stack_a, min_element(stack_a), fun(stack_a, min_element(stack_a)));
 						// aff(stack_a, stack_b, ft_lstsize(stack_a));
 	}
-	return 0;
+	return (0);
 }

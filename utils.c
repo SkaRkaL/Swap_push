@@ -38,8 +38,6 @@ int fun(t_list *stack, t_list *elem)
 	int size = ft_lstsize(stack);
 	while (1)
 	{
-		// if (kk >= ft_lstsize(stack))
-		// 	return 0;
 		if(elem -> content == test -> content)
 				break ;
 		test = test -> next;
@@ -109,8 +107,6 @@ void	moves_indx(t_list **stack_a, t_list **stack_b)
 
 	max = max_element(*stack_a);
 	min = min_element(*stack_a);
-	// printf("--------------<size b after moves indx %d>--------------\n", ft_lstsize(*stack_b));
-	// printf("moves table from here *********\n");
 	while(b_tmp)
 	{
 		first_tmp = *stack_a;
@@ -143,7 +139,6 @@ void	moves_indx(t_list **stack_a, t_list **stack_b)
 		}
 		b_tmp = b_tmp->next;
 	}
-	// printf("\nmoves table ends here *********\n");
 }
 
 int	stack_top_bottom(t_list *stack, t_list *best_cntnt)
@@ -167,7 +162,6 @@ int	mymax(int a, int b)
 }
 void	push_b_to_a(t_list **stack_b, t_list **stack_a, t_list *bst_contnt)
 {
-	// printf("----------------> bst_contnt %d\n", bst_contnt->place->content);
 	moves_indx(stack_a, stack_b);
 	if (stack_top_bottom(*stack_a, bst_contnt->place) && stack_top_bottom(*stack_b, bst_contnt))
 	{
