@@ -1,82 +1,5 @@
 #include "push_swap.h"
 
-int ft_length(char **str, char *sep, int size)
-{
-	int i;
-	int l;
-
-	i = 0;
-	l = 0;
-	while (i < size)
-	{
-		l += ft_strlen(str[i]);
-		i++;
-	}
-	l += ft_strlen(sep) * (size - 1);
-	return (l);
-}
-
-char *ft_strcat(char *dest, char *src)
-{
-	int i;
-	int count;
-
-	count = 0;
-	i = 0;
-	while (dest[count] != '\0')
-		count++;
-	while (src[i] != '\0')
-	{
-		dest[count + i] = src[i];
-		i++;
-	}
-	dest[count + i] = '\0';
-	return (dest);
-}
-
-char *ft_strjoin(int size, char **strs, char *sep)
-{
-	char *str;
-	int i;
-
-	str = NULL;
-	i = 0;
-	if (size <= 0)
-	{
-		str = malloc(sizeof(char) * 1);
-		*str = '\0';
-		return (str);
-	}
-	str = malloc(sizeof(char) * ft_length(strs, sep, size) + 1);
-	if (!str)
-		return (str);
-	str[i] = '\0';
-	while (i < size)
-	{
-		ft_strcat(str, strs[i]);
-		if (i < size - 1)
-			ft_strcat(str, sep);
-		i++;
-	}
-	return (str);
-}
-
-int ft_lstsize(t_list *lst)
-{
-	int size;
-	int num;
-
-	if (!lst)
-		return (0);
-	size = 0;
-	num = lst->content;
-	while (lst)
-	{
-		lst = lst->next;
-		size++;
-	}
-	return (size);
-}
 void aff(t_list *stack_a, t_list *stack_b, int size)
 {
 	printf("------Start-----\n");
@@ -103,34 +26,34 @@ void aff(t_list *stack_a, t_list *stack_b, int size)
 	printf("------End-----\n");
 }
 
-int max_min_element(t_list *stack, int *ret_min)
-{
-	int max;
-	int min;
-	int ret_max;
+// int max_min_element(t_list *stack, int *ret_min)
+// {
+// 	int max;
+// 	int min;
+// 	int ret_max;
+// 	int pos = 1;
 
-	ret_max = 1;
-	*ret_min = 1;
-	max = stack->content;
-	min = stack->content;
-	int pos = 1;
-	while (stack->next)
-	{
-		pos++;
-		if (max < stack->next->content)
-		{
-			max = stack->next->content;
-			ret_max = pos;
-		}
-		if (min > stack->next->content)
-		{
-			min = stack->next->content;
-			*ret_min = pos;
-		}
-		stack = stack->next;
-	}
-	return (ret_max);
-}
+// 	ret_max = 1;
+// 	*ret_min = 1;
+// 	max = stack->content;
+// 	min = stack->content;
+// 	while (stack->next)
+// 	{
+// 		pos++;
+// 		if (max < stack->next->content)
+// 		{
+// 			max = stack->next->content;
+// 			ret_max = pos;
+// 		}
+// 		if (min > stack->next->content)
+// 		{
+// 			min = stack->next->content;
+// 			*ret_min = pos;
+// 		}
+// 		stack = stack->next;
+// 	}
+// 	return (ret_max);
+// }
 
 void is_sorted(t_list *stack_a)
 {
@@ -152,14 +75,14 @@ void is_sorted(t_list *stack_a)
 	exit(write(1, "Already Sorted :)\n", 19) & 0);
 }
 
-t_list *__find_lis_head(t_list **stack, int full_size)
+void __find_lis_head(t_list **stack, int full_size)
 {
 	int len = 0;
 	int size = full_size;
 	t_list *head = (*stack);
 	t_list *ret;
 	if (!head)
-		return NULL;
+		return;
 	int tmp_size = size;
 	while (size)
 	{
@@ -229,7 +152,6 @@ t_list *__find_lis_head(t_list **stack, int full_size)
 		tmp--;
 		indexing = indexing->next;
 	}
-	return (ret);
 }
 
 void indx_stack(t_list **stack)
@@ -367,11 +289,7 @@ int main(int ac, char **av)
 	{
 		sort_III(&stack_a);
 	}
-	else if (size <= 5)
-	{
-		sort_V(&stack_a, &stack_b);
-	}
-	else if (size > 5)
+	if (size > 3)
 	{
 		if (tempe_head->next == NULL)
 			tempe_head->next = stack_a;
@@ -379,15 +297,6 @@ int main(int ac, char **av)
 		if (tempe_head->next == stack_a)
 			tempe_head->next = NULL;
 		indx_stack(&stack_a);
-		t_list *tempo = NULL;
-		tempo = stack_a;
-		int flag_size = 0;
-		while (tempo)
-		{
-			if (tempo->flag == 0)
-				flag_size++;
-			tempo = tempo->next;
-		}
 		push_flag0_b(&stack_a, &stack_b);
 		t_list *b = stack_b;
 		i = ft_lstsize(b);
@@ -397,7 +306,7 @@ int main(int ac, char **av)
 			push_b_to_a(&stack_b, &stack_a, get_best_move(stack_b));
 		}
 		mn_te7t_lfo9(&stack_a, min_element(stack_a), fun(stack_a, min_element(stack_a)));
-						aff(stack_a, stack_b, ft_lstsize(stack_a));
+		// aff(stack_a, stack_b, ft_lstsize(stack_a));
 	}
 	return (0);
 }
