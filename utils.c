@@ -97,6 +97,58 @@ int be_to_the_top(t_list *stack,t_list *elem)
 	}
 }
 
+int	up_or_down_moves(int i, int j, t_list *stack_a , t_list *stack_b)
+{
+	int	two_up;
+	int	two_dwn;
+	int	up_dwn;
+	int	dwn_up;
+	int a= ft_lstsize(stack_a);
+	int b= ft_lstsize(stack_b);
+
+	two_up = mymax(i, j);
+	two_dwn = mymax(a - i, b - j);
+	up_dwn = i + b - j;
+	dwn_up = j + a - i;
+
+	if (two_up <= two_dwn && two_up <= up_dwn && two_up <= dwn_up)
+		return (two_up);
+	if (two_dwn <= two_up && two_dwn <= up_dwn && two_dwn <= dwn_up)
+		return (two_dwn);
+	if (up_dwn <= two_up && up_dwn <= two_dwn && up_dwn <= dwn_up)
+		return (up_dwn);
+	if (dwn_up <= two_up && dwn_up <= two_dwn && dwn_up <= up_dwn)
+		return (dwn_up);
+	else
+		return (0);
+}
+
+int	up_or_down_type(int i, int j, t_list *stack_a , t_list *stack_b)
+{
+	int	two_up;
+	int	two_dwn;
+	int	up_dwn;
+	int	dwn_up;
+	int a= ft_lstsize(stack_a);
+	int b= ft_lstsize(stack_b);
+
+	two_up = mymax(i, j);
+	two_dwn = mymax(a - i, b - j);
+	up_dwn = i + b - j;
+	dwn_up = j + a - i;
+
+	if (two_up <= two_dwn && two_up <= up_dwn && two_up <= dwn_up)
+		return (1);
+	if (two_dwn <= two_up && two_dwn <= up_dwn && two_dwn <= dwn_up)
+		return (2);
+	if (up_dwn <= two_up && up_dwn <= two_dwn && up_dwn <= dwn_up)
+		return (3);
+	if (dwn_up <= two_up && dwn_up <= two_dwn && dwn_up <= up_dwn)
+		return (4);
+	else
+		return (0);
+}
+
 void	moves_indx(t_list **stack_a, t_list **stack_b)
 {
 	t_list *first_tmp;
@@ -113,29 +165,29 @@ void	moves_indx(t_list **stack_a, t_list **stack_b)
 		second_tmp = (*stack_a)->next;
 		b_tmp->place = min;
 		if (b_tmp->content > max->content)
-			b_tmp->movs = 1 + be_to_the_top(*stack_b, b_tmp) + be_to_the_top(*stack_a, min);
+			b_tmp->movs = 1 + up_or_down_moves(min->indx, b_tmp->indx, *stack_a, *stack_b);
 		else if (b_tmp->content < min->content)
-			b_tmp->movs = 1 + be_to_the_top(*stack_b, b_tmp) + be_to_the_top(*stack_a, min);
+			b_tmp->movs = 1 + up_or_down_moves(min->indx, b_tmp->indx, *stack_a, *stack_b);
 		else 
 		{
-				while(second_tmp)
+			while(second_tmp)
+			{
+				
+				if (b_tmp->content > first_tmp->content && b_tmp->content < second_tmp->content)
 				{
-					
-					if (b_tmp->content > first_tmp->content && b_tmp->content < second_tmp->content)
-					{
-						b_tmp->movs = 1 + be_to_the_top(*stack_b, b_tmp) + be_to_the_top(*stack_a, second_tmp);
-						b_tmp->place = second_tmp;
-						break;
-					}
-					if (b_tmp->content < first_tmp->content && b_tmp->content > ft_lstlast(first_tmp)->content)
-					{
-						b_tmp->movs = 1;
-						b_tmp->place = first_tmp;
-						break;
-					}
-					second_tmp = second_tmp->next;
-					first_tmp = first_tmp->next;
+					b_tmp->movs = 1 + up_or_down_moves(second_tmp->indx, b_tmp->indx, *stack_a, *stack_b);
+					b_tmp->place = second_tmp;
+					break;
 				}
+				if (b_tmp->content < first_tmp->content && b_tmp->content > ft_lstlast(first_tmp)->content)
+				{
+					b_tmp->movs = 1 + up_or_down_moves(second_tmp->indx, b_tmp->indx, *stack_a, *stack_b);
+					b_tmp->place = first_tmp;
+					break;
+				}
+				second_tmp = second_tmp->next;
+				first_tmp = first_tmp->next;
+			}
 		}
 		b_tmp = b_tmp->next;
 	}
@@ -162,8 +214,7 @@ int	mymax(int a, int b)
 }
 void	push_b_to_a(t_list **stack_b, t_list **stack_a, t_list *bst_contnt)
 {
-	moves_indx(stack_a, stack_b);
-	if (stack_top_bottom(*stack_a, bst_contnt->place) && stack_top_bottom(*stack_b, bst_contnt))
+	if (up_or_down_type(bst_contnt->place->indx, bst_contnt->indx, *stack_a , *stack_b) == 1)
 	{
 		while ((*stack_a)->content != bst_contnt->place->content
 			&& (*stack_b)->content != bst_contnt->content)
@@ -175,7 +226,7 @@ void	push_b_to_a(t_list **stack_b, t_list **stack_a, t_list *bst_contnt)
 		while ((*stack_b)->content != bst_contnt->content)
 			rb(stack_b, 1);
 	}
-	else if (!stack_top_bottom(*stack_a, bst_contnt->place) && !stack_top_bottom(*stack_b, bst_contnt))
+	else if (up_or_down_type(bst_contnt->place->indx, bst_contnt->indx, *stack_a , *stack_b) == 2)
 	{
 		while ((*stack_a)->content != bst_contnt->place->content
 			&& (*stack_b)->content != bst_contnt->content)
@@ -187,14 +238,14 @@ void	push_b_to_a(t_list **stack_b, t_list **stack_a, t_list *bst_contnt)
 		while ((*stack_b)->content != bst_contnt->content)
 			rrb(stack_b, 1);
 	}
-	else if (stack_top_bottom(*stack_a, bst_contnt->place) && !stack_top_bottom(*stack_b, bst_contnt))
+	else if (up_or_down_type(bst_contnt->place->indx, bst_contnt->indx, *stack_a , *stack_b) == 3)
 	{
 		while ((*stack_a)->content != bst_contnt->place->content)
 			ra(stack_a, 1);
 		while ((*stack_b)->content != bst_contnt->content)
 			rrb(stack_b, 1);
 	}
-	else if (!stack_top_bottom(*stack_a, bst_contnt->place) && stack_top_bottom(*stack_b, bst_contnt))
+	else if (up_or_down_type(bst_contnt->place->indx, bst_contnt->indx, *stack_a , *stack_b) == 4)
 	{
 		while ((*stack_a)->content != bst_contnt->place->content)
 			rra(stack_a, 1);

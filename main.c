@@ -84,7 +84,7 @@ void aff(t_list *stack_a, t_list *stack_b, int size)
 	{
 		if (stack_a)
 		{
-			printf("%d| %d\t", stack_a->content, stack_a->flag);
+			printf("%d| %d\t", stack_a->content, stack_a->indx);
 			stack_a = stack_a->next;
 		}
 		else
@@ -135,7 +135,6 @@ int max_min_element(t_list *stack, int *ret_min)
 void is_sorted(t_list *stack_a)
 {
 	t_list *tmp;
-	// int cont[MAX_INT] = {0};
 
 	tmp = stack_a->next;
 	while (stack_a->next)
@@ -364,31 +363,22 @@ int main(int ac, char **av)
 	size = i;
 	is_sorted(stack_a);
 	t_list *tempe_head = ft_lstlast(stack_a);
-	// aff(stack_a, stack_b, size);
-
 	if (size <= 3)
-	{ // Sort 3
+	{
 		sort_III(&stack_a);
-		// aff(stack_a, stack_b, size);
 	}
 	else if (size <= 5)
-	{ // Sort 5
+	{
 		sort_V(&stack_a, &stack_b);
-		// aff(stack_a, stack_b, size);
 	}
 	else if (size > 5)
 	{
 		if (tempe_head->next == NULL)
 			tempe_head->next = stack_a;
-		t_list *Markup_head = __find_lis_head(&stack_a, size);
-		(void)Markup_head;
-		// printf("\n\tMarkup Head -> |%d|\n\n", Markup_head->content);
+		__find_lis_head(&stack_a, size);
 		if (tempe_head->next == stack_a)
 			tempe_head->next = NULL;
-		// ***********************************************************
 		indx_stack(&stack_a);
-							// aff(stack_a, stack_b, ft_lstsize(stack_a));
-		// ********************************
 		t_list *tempo = NULL;
 		tempo = stack_a;
 		int flag_size = 0;
@@ -399,16 +389,15 @@ int main(int ac, char **av)
 			tempo = tempo->next;
 		}
 		push_flag0_b(&stack_a, &stack_b);
-		moves_indx(&stack_a, &stack_b);
-					// aff(stack_a, stack_b, mymax(ft_lstsize(stack_a), ft_lstsize(stack_b)));
 		t_list *b = stack_b;
 		i = ft_lstsize(b);
 		while (i--)
 		{
+			moves_indx(&stack_a, &stack_b);
 			push_b_to_a(&stack_b, &stack_a, get_best_move(stack_b));
 		}
 		mn_te7t_lfo9(&stack_a, min_element(stack_a), fun(stack_a, min_element(stack_a)));
-						// aff(stack_a, stack_b, ft_lstsize(stack_a));
+						aff(stack_a, stack_b, ft_lstsize(stack_a));
 	}
 	return (0);
 }
