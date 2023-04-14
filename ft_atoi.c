@@ -1,10 +1,10 @@
 #include "push_swap.h"
 
-int	ft_atoi(const char *str)
+long	ft_atoi(const char *str)
 {
 	int	i;
 	int	signe;
-	int	resu;
+	long	resu;
 
 	i = 0;
 	signe = 1;
