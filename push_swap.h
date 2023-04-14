@@ -1,12 +1,12 @@
 #ifndef PUSH_SWAP_H
-#define PUSH_SWAP_H
+# define PUSH_SWAP_H
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
-#include <limits.h>
-#include <ctype.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
+# include <unistd.h>
+# include <limits.h>
+# include <ctype.h>
 
 typedef struct	s_list
 {
@@ -20,10 +20,10 @@ typedef struct	s_list
 	struct s_list *next;
 } t_list;
 
-int	ft_atoi(const char *str);
+long	ft_atoi(const char *str);
 
 
-int	mymax(int a, int b);
+int		mymax(int a, int b);
 
 t_list	*ft_lstnew(int content);
 int		ft_lstsize(t_list *lst);
@@ -32,6 +32,9 @@ void	ft_lstadd_back(t_list **lst, t_list *new);
 void	ft_lstadd_front(t_list **lst, t_list *new);
 t_list	*ft_beforelast(t_list *lst);
 
+int		ft_length(char **str, char *sep, int size);
+char	*ft_strjoin(int size, char **strs, char *sep);
+char	*ft_strcat(char *dest, char *src);
 
 int		ft_isdigit(char *c);
 char	*ft_substr(char *s, int start, int len);
