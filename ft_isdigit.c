@@ -7,7 +7,9 @@ int	ft_isdigit(char *c)
 		return 1;
 	if (c[0] == '-' && c[1] == '\0')
 		return 1;
-	if (c[0] == '-')
+	if (c[0] == '+' && c[1] == '\0')
+		return 1;
+	if (c[0] == '-' || c[0] == '+')
 		i++;
 	while (c[i])
 	{
