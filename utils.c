@@ -68,48 +68,17 @@ void	push_flag0_b(t_list **stack_a, t_list **stack_b)
 	}
 }
 
-int be_to_the_top(t_list *stack,t_list *elem)
-{
-	int i = 0;
-	t_list *tmp = stack;
-	int top_or_down = fun(stack,elem);
-	if (top_or_down == 1)
-	{
-		while(tmp)
-		{
-			if (tmp->content == elem->content)
-				break;
-			i++;
-			tmp = tmp->next;
-		}
-		return (i);
-	}
-	else
-	{
-		while(tmp)
-		{
-			if (tmp->content == elem->content)
-				break;
-			i++;
-			tmp = tmp->next;
-		}
-		return (ft_lstsize(stack) - i);
-	}
-}
-
-int	up_or_down_moves(int i, int j, t_list *stack_a , t_list *stack_b)
+int	up_or_down_moves(int indx_a, int indx_b, t_list *stack_a , t_list *stack_b)
 {
 	int	two_up;
 	int	two_dwn;
 	int	up_dwn;
 	int	dwn_up;
-	int a= ft_lstsize(stack_a);
-	int b= ft_lstsize(stack_b);
 
-	two_up = mymax(i, j);
-	two_dwn = mymax(a - i, b - j);
-	up_dwn = i + b - j;
-	dwn_up = j + a - i;
+	two_up = mymax(indx_a, indx_b);
+	two_dwn = mymax(ft_lstsize(stack_a) - indx_a, ft_lstsize(stack_b) - indx_b);
+	up_dwn = indx_a + ft_lstsize(stack_b) - indx_b;
+	dwn_up = indx_b + ft_lstsize(stack_a) - indx_a;
 
 	if (two_up <= two_dwn && two_up <= up_dwn && two_up <= dwn_up)
 		return (two_up);
@@ -123,19 +92,17 @@ int	up_or_down_moves(int i, int j, t_list *stack_a , t_list *stack_b)
 		return (0);
 }
 
-int	up_or_down_type(int i, int j, t_list *stack_a , t_list *stack_b)
+int	up_or_down_type(int indx_a, int indx_b, t_list *stack_a , t_list *stack_b)
 {
 	int	two_up;
 	int	two_dwn;
 	int	up_dwn;
 	int	dwn_up;
-	int a= ft_lstsize(stack_a);
-	int b= ft_lstsize(stack_b);
 
-	two_up = mymax(i, j);
-	two_dwn = mymax(a - i, b - j);
-	up_dwn = i + b - j;
-	dwn_up = j + a - i;
+	two_up = mymax(indx_a, indx_b);
+	two_dwn = mymax(ft_lstsize(stack_a) - indx_a, ft_lstsize(stack_b) - indx_b);
+	up_dwn = indx_a + ft_lstsize(stack_b) - indx_b;
+	dwn_up = indx_b + ft_lstsize(stack_a) - indx_a;
 
 	if (two_up <= two_dwn && two_up <= up_dwn && two_up <= dwn_up)
 		return (1);
@@ -151,11 +118,11 @@ int	up_or_down_type(int i, int j, t_list *stack_a , t_list *stack_b)
 
 void	moves_indx(t_list **stack_a, t_list **stack_b)
 {
-	t_list *first_tmp;
-	t_list *second_tmp;
-	t_list *b_tmp = *stack_b;
-	t_list *max;
-	t_list *min;
+	t_list	*first_tmp;
+	t_list	*second_tmp;
+	t_list	*b_tmp = *stack_b;
+	t_list	*max;
+	t_list	*min;
 
 	max = max_element(*stack_a);
 	min = min_element(*stack_a);
@@ -164,11 +131,9 @@ void	moves_indx(t_list **stack_a, t_list **stack_b)
 		first_tmp = *stack_a;
 		second_tmp = (*stack_a)->next;
 		b_tmp->place = min;
-		if (b_tmp->content > max->content)
+		if (b_tmp->content > max->content || b_tmp->content < min->content)
 			b_tmp->movs = 1 + up_or_down_moves(min->indx, b_tmp->indx, *stack_a, *stack_b);
-		else if (b_tmp->content < min->content)
-			b_tmp->movs = 1 + up_or_down_moves(min->indx, b_tmp->indx, *stack_a, *stack_b);
-		else 
+		else
 		{
 			while(second_tmp)
 			{
@@ -181,7 +146,7 @@ void	moves_indx(t_list **stack_a, t_list **stack_b)
 				}
 				if (b_tmp->content < first_tmp->content && b_tmp->content > ft_lstlast(first_tmp)->content)
 				{
-					b_tmp->movs = 1 + up_or_down_moves(second_tmp->indx, b_tmp->indx, *stack_a, *stack_b);
+					b_tmp->movs = 1 + up_or_down_moves(first_tmp->indx, b_tmp->indx, *stack_a, *stack_b);
 					b_tmp->place = first_tmp;
 					break;
 				}
