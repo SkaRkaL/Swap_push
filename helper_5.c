@@ -45,10 +45,10 @@ int	up_or_down_moves(int indx_a, int indx_b, t_list *stack_a , t_list *stack_b)
 
 int	up_or_down_type(int indx_a, int indx_b, t_list *stack_a , t_list *stack_b)
 {
-	int	two_up;
 	int	two_dwn;
-	int	up_dwn;
+	int	two_up;
 	int	dwn_up;
+	int	up_dwn;
 
 	two_up = mymax(indx_a, indx_b);
 	two_dwn = mymax(ft_lstsize(stack_a) - indx_a, ft_lstsize(stack_b) - indx_b);
@@ -71,10 +71,11 @@ void	moves_indx(t_list **stack_a, t_list **stack_b)
 {
 	t_list	*first_tmp;
 	t_list	*second_tmp;
-	t_list	*b_tmp = *stack_b;
+	t_list	*b_tmp;
 	t_list	*max;
 	t_list	*min;
 
+	b_tmp = *stack_b;
 	max = max_element(*stack_a);
 	min = min_element(*stack_a);
 	while(b_tmp)
@@ -88,7 +89,6 @@ void	moves_indx(t_list **stack_a, t_list **stack_b)
 		{
 			while(second_tmp)
 			{
-				
 				if (b_tmp->content > first_tmp->content && b_tmp->content < second_tmp->content)
 				{
 					b_tmp->movs = 1 + up_or_down_moves(second_tmp->indx, b_tmp->indx, *stack_a, *stack_b);
@@ -112,7 +112,7 @@ void	moves_indx(t_list **stack_a, t_list **stack_b)
 void	push_b_to_a(t_list **stack_b, t_list **stack_a, t_list *bst_contnt)
 {
 	if (up_or_down_type(bst_contnt->place->indx, bst_contnt->indx, *stack_a , *stack_b) == 1)
-		it_is_two_up	(stack_a, stack_b, bst_contnt);
+		it_is_two_up(stack_a, stack_b, bst_contnt);
 	else if (up_or_down_type(bst_contnt->place->indx, bst_contnt->indx, *stack_a , *stack_b) == 2)
 		it_is_two_dwn(stack_a, stack_b, bst_contnt);
 	else if (up_or_down_type(bst_contnt->place->indx, bst_contnt->indx, *stack_a , *stack_b) == 3)

@@ -30,6 +30,9 @@ void	it_is_two_up(t_list **stack_a, t_list **stack_b, t_list *bst_contnt);
 void	it_is_two_dwn(t_list **stack_a, t_list **stack_b, t_list *bst_contnt);
 void	it_is_up_dwn(t_list **stack_a, t_list **stack_b, t_list *bst_contnt);
 void	it_is_dwn_up(t_list **stack_a, t_list **stack_b, t_list *bst_contnt);
+void	min_1(t_list **stack_a, int min);
+void	min_2(t_list **stack_a, int min);
+void	min_3(t_list **stack_a, int min);
 //----------------------------------------------
 
 int		mymax(int a, int b);

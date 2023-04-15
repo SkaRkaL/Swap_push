@@ -2,8 +2,8 @@
 
 long	ft_atoi(const char *str)
 {
-	int	i;
-	int	signe;
+	int		i;
+	int		signe;
 	long	resu;
 
 	i = 0;
