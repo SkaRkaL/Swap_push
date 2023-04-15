@@ -22,6 +22,11 @@ typedef struct	s_list
 
 long	ft_atoi(const char *str);
 
+//----------------------------------------------
+int		ft_while(t_list *stack, int size, int count);
+void	inddexing_flag(t_list **stack, t_list *ret, int full_size);
+t_list	*__return_help(int size, t_list **stack);
+//----------------------------------------------
 
 int		mymax(int a, int b);
 

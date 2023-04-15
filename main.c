@@ -75,83 +75,14 @@ void is_sorted(t_list *stack_a)
 	exit(write(1, "Already Sorted :)\n", 19) & 0);
 }
 
-void __find_lis_head(t_list **stack, int full_size)
+void	__find_lis_head(t_list **stack, int full_size)
 {
-	int len = 0;
-	int size = full_size;
-	t_list *head = (*stack);
-	t_list *ret;
-	if (!head)
-		return;
-	int tmp_size = size;
-	while (size)
-	{
-		int count = 1;
+	int		len;
+	t_list	*ret;
 
-		int t_ze = tmp_size;
-		t_list *head_tmp = head;
-
-		t_list *tmp = head->next;
-		while (t_ze)
-		{
-			if (head_tmp->content < tmp->content)
-			{
-				head_tmp = tmp;
-				count++;
-			}
-			tmp = tmp->next;
-			t_ze--;
-		}
-		int h = t_ze;
-		if (h)
-		{
-			tmp = (*stack);
-			while (h > 0)
-			{
-				if (head_tmp->content < tmp->content)
-				{
-					head_tmp = tmp;
-					count++;
-				}
-				tmp = tmp->next;
-				h--;
-			}
-		}
-
-		if (count >= len)
-		{
-			len = count;
-			ret = head;
-		}
-		head = head->next;
-		size--;
-	}
-	t_list *indexing = *stack;
-	int lenght = full_size;
-	int tmp = full_size;
-	while (lenght)
-	{
-		if (indexing->content == ret->content)
-		{
-			indexing->flag = 1;
-			break;
-		}
-		indexing = indexing->next;
-		lenght--;
-	}
-	int mark = indexing->content;
-	while (tmp)
-	{
-		if (indexing->content >= mark)
-		{
-			indexing->flag = 1;
-			mark = indexing->content;
-		}
-		else
-			indexing->flag = 0;
-		tmp--;
-		indexing = indexing->next;
-	}
+	len = 0;
+	ret = __return_help(full_size, stack);
+	inddexing_flag(stack, ret, full_size);
 }
 
 void indx_stack(t_list **stack)
@@ -298,15 +229,14 @@ int main(int ac, char **av)
 			tempe_head->next = NULL;
 		indx_stack(&stack_a);
 		push_flag0_b(&stack_a, &stack_b);
-		t_list *b = stack_b;
-		i = ft_lstsize(b);
+		i = ft_lstsize(stack_b);
 		while (i--)
 		{
 			moves_indx(&stack_a, &stack_b);
 			push_b_to_a(&stack_b, &stack_a, get_best_move(stack_b));
 		}
 		mn_te7t_lfo9(&stack_a, min_element(stack_a), fun(stack_a, min_element(stack_a)));
-		// aff(stack_a, stack_b, ft_lstsize(stack_a));
+		aff(stack_a, stack_b, ft_lstsize(stack_a));
 	}
 	return (0);
 }
