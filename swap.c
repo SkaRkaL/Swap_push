@@ -15,7 +15,7 @@ void	sa(t_list **stack, int index)
 {
 	swap(stack);
 	if (index)
-		puts("sa");
+		write(1, "sa\n", 3);
 	indx_stack(stack);
 }
 
@@ -23,7 +23,7 @@ void	sb(t_list **stack, int index)
 {
 	swap(stack);
 	if (index)
-		puts("sb");
+		write(1, "sb\n", 3);
 	indx_stack(stack);
 }
 
@@ -32,5 +32,5 @@ void	ss(t_list **stack_a, t_list **stack_b, int index)
 	swap(stack_a);
 	swap(stack_b);
 	if (index)
-		puts("ss");
+		write(1, "ss\n", 3);
 }

@@ -13,7 +13,7 @@ void	rra(t_list **stack_a, int index)
 {
 	reverse_rotate(stack_a);
 	if(index)
-		puts("rra");
+		write(1, "rra\n", 4);
 	indx_stack(stack_a);
 }
 
@@ -21,7 +21,7 @@ void	rrb(t_list **stack_b, int index)
 {
 	reverse_rotate(stack_b);
 	if(index)
-		puts("rrb");
+		write(1, "rrb\n", 4);
 	indx_stack(stack_b);
 }
 
@@ -30,6 +30,6 @@ void	rrr(t_list **stack_a, t_list **stack_b, int index)
 	reverse_rotate(stack_a);
 	reverse_rotate(stack_b);
 	if (index)
-		puts("rrr");
+		write(1, "rrr\n", 4);
 	indx_stack(stack_a);
 }

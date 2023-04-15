@@ -89,3 +89,26 @@ int max_min_element(t_list *stack, int *ret_min)
 	}
 	return (ret_max);
 }
+
+int	ft_while(t_list *stack, int size, int count)
+{
+	int	t_sz;
+	t_list	*tmp1;
+	t_list	*tmp2;
+
+	count = 1;
+	t_sz = size;
+	tmp1 = stack;
+	tmp2 = stack->next;
+	while (t_sz)
+	{
+		if (tmp1->content < tmp2->content)
+		{
+			tmp1 = tmp2;
+			count++;
+		}
+		tmp2 = tmp2->next;
+		t_sz--;
+	}
+	return (t_sz);
+}

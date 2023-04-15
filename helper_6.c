@@ -1,44 +1,11 @@
 #include "push_swap.h"
 
-int	ft_while(t_list *stack, int size, int count)
+void	flag_stack(int full_size, t_list *indexing)
 {
-	int	t_sz;
-	t_list	*tmp1;
-	t_list	*tmp2;
-
-	count = 1;
-	t_sz = size;
-	tmp1 = stack;
-	tmp2 = stack->next;
-	while (t_sz)
-	{
-		if (tmp1->content < tmp2->content)
-		{
-			tmp1 = tmp2;
-			count++;
-		}
-		tmp2 = tmp2->next;
-		t_sz--;
-	}
-	return (t_sz);
-}
-
-void	inddexing_flag(t_list **stack, t_list *ret, int full_size)
-{
-	t_list *indexing = *stack;
-	int lenght = full_size;
-	int tmp = full_size;
-	while (lenght)
-	{
-		if (indexing->content == ret->content)
-		{
-			indexing->flag = 1;
-			break;
-		}
-		indexing = indexing->next;
-		lenght--;
-	}
-	int mark = indexing->content;
+	int	mark;
+	int tmp;
+	tmp = full_size;
+	mark = indexing->content;
 	while (tmp)
 	{
 		if (indexing->content >= mark)
@@ -51,6 +18,26 @@ void	inddexing_flag(t_list **stack, t_list *ret, int full_size)
 		tmp--;
 		indexing = indexing->next;
 	}
+}
+
+void	inddexing_flag(t_list **stack, t_list *ret, int full_size)
+{
+	t_list	*indexing;
+	int		lenght;
+
+	indexing = *stack;
+	lenght = full_size;
+	while (lenght)
+	{
+		if (indexing->content == ret->content)
+		{
+			indexing->flag = 1;
+			break;
+		}
+		indexing = indexing->next;
+		lenght--;
+	}
+	flag_stack(full_size, indexing);
 }
 
 void	helpp(int h, t_list **stack, t_list *head, int count)

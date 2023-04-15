@@ -1,54 +1,5 @@
 #include "push_swap.h"
 
-void	mn_te7t_lfo9(t_list **stack_a, t_list *test, int a)
-{
-	while(1)
-	{
-		if((*stack_a)->content == test -> content)
-			break;
-		if(a == 0)
-			rra(stack_a, ft_lstsize(*stack_a));
-		if(a == 1)
-			ra(stack_a, ft_lstsize(*stack_a));
-	}
-}
-void	mn_te7t_lfo9_b(t_list **stack_b, t_list *test, int a)
-{
-	while(1)
-	{
-		if((*stack_b)->content == test -> content)
-			break;
-		if(a == 0)
-			rrb(stack_b, ft_lstsize(*stack_b));
-		if(a == 1)
-			rb(stack_b, ft_lstsize(*stack_b));
-	}
-}
-
-void fun1(t_list **stack_a, t_list **stack_b, t_list *test, int a)
-{
-	mn_te7t_lfo9(stack_a, test, a);
-	pb(stack_b, stack_a, ft_lstsize(*stack_a));
-}
-
-int fun(t_list *stack, t_list *elem)
-{
-	int kk = 0;
-	t_list *test = stack;
-	int size = ft_lstsize(stack);
-	while (1)
-	{
-		if(elem -> content == test -> content)
-				break ;
-		test = test -> next;
-		kk++;
-	}
-
-	if(kk > size/2)
-		return 0;
-	return 1;
-}
-
 void	push_flag0_b(t_list **stack_a, t_list **stack_b)
 {
 	int	re_think;
@@ -158,64 +109,15 @@ void	moves_indx(t_list **stack_a, t_list **stack_b)
 	}
 }
 
-int	stack_top_bottom(t_list *stack, t_list *best_cntnt)
-{
-	int	size = ft_lstsize(stack);
-	int i = 0;
-	while (stack->content != best_cntnt->content)
-	{
-		i++;
-		stack = stack->next;
-	}
-	if (i < size / 2)
-		return 1;
-	return (0);
-}
-int	mymax(int a, int b)
-{
-	if (a > b)
-		return (a);
-	return (b);
-}
 void	push_b_to_a(t_list **stack_b, t_list **stack_a, t_list *bst_contnt)
 {
 	if (up_or_down_type(bst_contnt->place->indx, bst_contnt->indx, *stack_a , *stack_b) == 1)
-	{
-		while ((*stack_a)->content != bst_contnt->place->content
-			&& (*stack_b)->content != bst_contnt->content)
-		{
-			rr(stack_a, stack_b, 1);
-		}
-		while ((*stack_a)->content != bst_contnt->place->content)
-			ra(stack_a, 1);
-		while ((*stack_b)->content != bst_contnt->content)
-			rb(stack_b, 1);
-	}
+		it_is_two_up	(stack_a, stack_b, bst_contnt);
 	else if (up_or_down_type(bst_contnt->place->indx, bst_contnt->indx, *stack_a , *stack_b) == 2)
-	{
-		while ((*stack_a)->content != bst_contnt->place->content
-			&& (*stack_b)->content != bst_contnt->content)
-		{
-			rrr(stack_a, stack_b, 1);
-		}
-		while ((*stack_a)->content != bst_contnt->place->content)
-			rra(stack_a, 1);
-		while ((*stack_b)->content != bst_contnt->content)
-			rrb(stack_b, 1);
-	}
+		it_is_two_dwn(stack_a, stack_b, bst_contnt);
 	else if (up_or_down_type(bst_contnt->place->indx, bst_contnt->indx, *stack_a , *stack_b) == 3)
-	{
-		while ((*stack_a)->content != bst_contnt->place->content)
-			ra(stack_a, 1);
-		while ((*stack_b)->content != bst_contnt->content)
-			rrb(stack_b, 1);
-	}
+		it_is_up_dwn(stack_a, stack_b, bst_contnt);
 	else if (up_or_down_type(bst_contnt->place->indx, bst_contnt->indx, *stack_a , *stack_b) == 4)
-	{
-		while ((*stack_a)->content != bst_contnt->place->content)
-			rra(stack_a, 1);
-		while ((*stack_b)->content != bst_contnt->content)
-			rb(stack_b, 1);
-	}
+		it_is_dwn_up(stack_a, stack_b, bst_contnt);
 	pa(stack_a, stack_b, ft_lstsize(*stack_a));
 }

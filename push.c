@@ -9,7 +9,7 @@ void	pb(t_list **stack_b, t_list **stack_a, int indx_a)
 	*stack_a = (*stack_a)->next;
 	tmp->next = *stack_b;
 	*stack_b = tmp;
-		puts("pb");
+		write(1, "pb\n", 3);
 	indx_stack(stack_b);
 	indx_stack(stack_a);
 }
@@ -24,7 +24,7 @@ void	pa(t_list **stack_a, t_list **stack_b, int indx_b)
 	*stack_b = (*stack_b)->next;
 	tmp->next = *stack_a;
 	*stack_a = tmp;
-		puts("pa");
+		write(1, "pa\n", 3);
 	indx_stack(stack_a);
 	indx_stack(stack_b);
 }

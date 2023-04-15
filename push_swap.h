@@ -26,6 +26,10 @@ long	ft_atoi(const char *str);
 int		ft_while(t_list *stack, int size, int count);
 void	inddexing_flag(t_list **stack, t_list *ret, int full_size);
 t_list	*__return_help(int size, t_list **stack);
+void	it_is_two_up(t_list **stack_a, t_list **stack_b, t_list *bst_contnt);
+void	it_is_two_dwn(t_list **stack_a, t_list **stack_b, t_list *bst_contnt);
+void	it_is_up_dwn(t_list **stack_a, t_list **stack_b, t_list *bst_contnt);
+void	it_is_dwn_up(t_list **stack_a, t_list **stack_b, t_list *bst_contnt);
 //----------------------------------------------
 
 int		mymax(int a, int b);
