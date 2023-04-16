@@ -20,6 +20,14 @@ typedef struct	s_list
 	struct s_list *next;
 } t_list;
 
+typedef struct s_elm
+{
+	t_list	*first_tmp;
+	t_list	*second_tmp;
+	t_list	*b_tmp;
+}			t_elm;
+
+
 long	ft_atoi(const char *str);
 
 //----------------------------------------------
@@ -33,6 +41,8 @@ void	it_is_dwn_up(t_list **stack_a, t_list **stack_b, t_list *bst_contnt);
 void	min_1(t_list **stack_a, int min);
 void	min_2(t_list **stack_a, int min);
 void	min_3(t_list **stack_a, int min);
+void	move_while(t_list **stack_a, t_list **stack_b, t_elm *elm);
+int		up_or_down_moves(int indx_a, int indx_b, t_list *stack_a , t_list *stack_b);
 //----------------------------------------------
 
 int		mymax(int a, int b);
