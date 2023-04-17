@@ -6,7 +6,7 @@
 /*   By: sakarkal <sakarkal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 21:11:55 by sakarkal          #+#    #+#             */
-/*   Updated: 2023/04/17 23:33:47 by sakarkal         ###   ########.fr       */
+/*   Updated: 2023/04/17 23:43:24 by sakarkal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	push_flag0_b(t_list **stack_a, t_list **stack_b)
 	}
 }
 
-int	up_or_down_moves(int indx_a, int indx_b, t_list *stack_a, t_list *stack_b)
+int	up_or_down(int indx_a, int indx_b, t_list *stack_a, t_list *stack_b)
 {
 	int	two_up;
 	int	two_dwn;
@@ -96,7 +96,7 @@ void	moves_indx(t_list **stack_a, t_list **stack_b)
 		elm.b_tmp->place = min;
 		if (elm.b_tmp->content > max->content || \
 				elm.b_tmp->content < min->content)
-			elm.b_tmp->movs = 1 + up_or_down_moves(min->indx, \
+			elm.b_tmp->movs = 1 + up_or_down(min->indx, \
 				elm.b_tmp->indx, *stack_a, *stack_b);
 		else
 		{
