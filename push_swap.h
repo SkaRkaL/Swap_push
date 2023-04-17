@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sakarkal <sakarkal@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/17 21:12:25 by sakarkal          #+#    #+#             */
+/*   Updated: 2023/04/17 23:45:05 by sakarkal         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
@@ -8,17 +20,16 @@
 # include <limits.h>
 # include <ctype.h>
 
-typedef struct	s_list
+typedef struct s_list
 {
-	struct s_list *prev;
-	struct s_list *place;
-	int indx;
-	int content;
-	int flag;
-	int movs;
-	int min_move;
-	struct s_list *next;
-} t_list;
+	struct s_list	*place;
+	int				indx;
+	int				content;
+	int				flag;
+	int				movs;
+	int				min_move;
+	struct s_list	*next;
+}					t_list;
 
 typedef struct s_elm
 {
@@ -26,7 +37,6 @@ typedef struct s_elm
 	t_list	*second_tmp;
 	t_list	*b_tmp;
 }			t_elm;
-
 
 long	ft_atoi(const char *str);
 
@@ -42,8 +52,9 @@ void	min_1(t_list **stack_a, int min);
 void	min_2(t_list **stack_a, int min);
 void	min_3(t_list **stack_a, int min);
 void	move_while(t_list **stack_a, t_list **stack_b, t_elm *elm);
-int		up_or_down_moves(int indx_a, int indx_b, t_list *stack_a , t_list *stack_b);
+int		up_or_down(int indx_a, int indx_b, t_list *stack_a, t_list *stack_b);
 char	**_parcer(int ac, char **av);
+void	*check_isfree(char **str);
 //----------------------------------------------
 
 int		mymax(int a, int b);
@@ -81,21 +92,18 @@ void	rrr(t_list **stack_a, t_list **stack_b, int index);
 void	pa(t_list **stack_a, t_list **stack_b, int indx_b);
 void	pb(t_list **stack_b, t_list **stack_a, int indx_a);
 
-
-
 void	sort_III(t_list **stack_a);
 void	sort_V(t_list **stack_a, t_list **stack_b);
 int		max_min_element(t_list *stack, int *ret_min);
 
-
-void aff(t_list *stack_a, t_list *stack_b, int size);
+// void	aff(t_list *stack_a, t_list *stack_b, int size);
 
 void	indx_stack(t_list **stack);
 void	fun1(t_list **stack_a, t_list **stack_b, t_list *test, int a);
 int		fun(t_list *stack, t_list *elem);
 void	push_flag0_b(t_list **stack_a, t_list **stack_b);
 void	mn_te7t_lfo9(t_list **stack_a, t_list *test, int a);
-int		be_to_the_top(t_list *stack,t_list *elem);
+int		be_to_the_top(t_list *stack, t_list *elem);
 void	moves_indx(t_list **stack_a, t_list **stack_b);
 void	push_b_to_a(t_list **stack_b, t_list **stack_a, t_list *bst_contnt);
 t_list	*max_element(t_list *stack);
