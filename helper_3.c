@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   helper_3.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sakarkal <sakarkal@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/17 21:11:45 by sakarkal          #+#    #+#             */
+/*   Updated: 2023/04/17 22:14:03 by sakarkal         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-int ft_length(char **str, char *sep, int size)
+int	ft_length(char **str, char *sep, int size)
 {
-	int i;
-	int l;
+	int	i;
+	int	l;
 
 	i = 0;
 	l = 0;
@@ -16,10 +28,10 @@ int ft_length(char **str, char *sep, int size)
 	return (l);
 }
 
-char *ft_strcat(char *dest, char *src)
+char	*ft_strcat(char *dest, char *src)
 {
-	int i;
-	int count;
+	int	i;
+	int	count;
 
 	count = 0;
 	i = 0;
@@ -34,10 +46,10 @@ char *ft_strcat(char *dest, char *src)
 	return (dest);
 }
 
-char *ft_strjoin(int size, char **strs, char *sep)
+char	*ft_strjoin(int size, char **strs, char *sep)
 {
-	char *str;
-	int i;
+	char	*str;
+	int		i;
 
 	str = NULL;
 	i = 0;
@@ -61,15 +73,15 @@ char *ft_strjoin(int size, char **strs, char *sep)
 	return (str);
 }
 
-int max_min_element(t_list *stack, int *ret_min)
+int	max_min_element(t_list *stack, int *ret_min)
 {
-	int max;
-	int min;
-	int ret_max;
-	int pos = 1;
+	int	max;
+	int	min;
+	int	ret_max;
+	int	pos;
 
-	ret_max = 1;
 	*ret_min = 1;
+	pos = 1;
 	max = stack->content;
 	min = stack->content;
 	while (stack->next)
@@ -92,7 +104,7 @@ int max_min_element(t_list *stack, int *ret_min)
 
 int	ft_while(t_list *stack, int size, int count)
 {
-	int	t_sz;
+	int		t_sz;
 	t_list	*tmp1;
 	t_list	*tmp2;
 
