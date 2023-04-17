@@ -26,35 +26,6 @@ void aff(t_list *stack_a, t_list *stack_b, int size)
 	printf("------End-----\n");
 }
 
-// int max_min_element(t_list *stack, int *ret_min)
-// {
-// 	int max;
-// 	int min;
-// 	int ret_max;
-// 	int pos = 1;
-
-// 	ret_max = 1;
-// 	*ret_min = 1;
-// 	max = stack->content;
-// 	min = stack->content;
-// 	while (stack->next)
-// 	{
-// 		pos++;
-// 		if (max < stack->next->content)
-// 		{
-// 			max = stack->next->content;
-// 			ret_max = pos;
-// 		}
-// 		if (min > stack->next->content)
-// 		{
-// 			min = stack->next->content;
-// 			*ret_min = pos;
-// 		}
-// 		stack = stack->next;
-// 	}
-// 	return (ret_max);
-// }
-
 void is_sorted(t_list *stack_a)
 {
 	t_list *tmp;
@@ -174,19 +145,20 @@ t_list *max_element(t_list *stack)
 
 int main(int ac, char **av)
 {
-	int i = 0;
-	int j;
-	char **c;
+	int		i;
+	int		j;
+	char	**c;
 
+	i = 0;
 	if (ac > 1)
 	{
 		if (av[1][0] == '\0')
-			return (write(2, "Error ! Empty String\n", 22));
+			return (write(2, "Error\n", 7));
 		c = ft_split(ft_strjoin(ac - 1, av + 1, " "), ' ');
 		while (c[i])
 		{
 			if (ft_isdigit(c[i]))
-				return (write(2, "Error !", 8));
+				return (write(2, "Error\n", 7));
 			i++;
 		}
 		i = 0;
@@ -196,15 +168,14 @@ int main(int ac, char **av)
 			while (c[j])
 			{
 				if (!strcmp(c[i], c[j]))
-					return (write(2, "Error !!", 9));
+					return (write(2, "Error\n", 7));
 				j++;
 			}
 			i++;
 		}
 	}
 	else
-		return (write(2, "Error Args !", 13));
-
+		return (0);
 	t_list *stack_a = NULL;
 	t_list *stack_b = NULL;
 
