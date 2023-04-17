@@ -6,7 +6,7 @@
 /*   By: sakarkal <sakarkal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 21:12:25 by sakarkal          #+#    #+#             */
-/*   Updated: 2023/04/17 23:45:05 by sakarkal         ###   ########.fr       */
+/*   Updated: 2023/04/17 23:51:37 by sakarkal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	rrr(t_list **stack_a, t_list **stack_b, int index);
 void	pa(t_list **stack_a, t_list **stack_b, int indx_b);
 void	pb(t_list **stack_b, t_list **stack_a, int indx_a);
 
-void	sort_III(t_list **stack_a);
+void	sort_3(t_list **stack_a);
 void	sort_V(t_list **stack_a, t_list **stack_b);
 int		max_min_element(t_list *stack, int *ret_min);
 
