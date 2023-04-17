@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   helper_1.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sakarkal <sakarkal@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/17 21:11:35 by sakarkal          #+#    #+#             */
+/*   Updated: 2023/04/17 22:08:02 by sakarkal         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 char	*ft_strdup(char *s1)
@@ -52,7 +64,7 @@ int	ft_strlen(char *s)
 char	*ft_substr(char *s, int start, int len)
 {
 	char	*str;
-	int	i;
+	int		i;
 
 	if (!s)
 		return (NULL);
