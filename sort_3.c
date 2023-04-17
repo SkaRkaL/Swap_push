@@ -1,10 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort_3.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sakarkal <sakarkal@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/17 21:12:57 by sakarkal          #+#    #+#             */
+/*   Updated: 2023/04/17 23:52:15 by sakarkal         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-void	sort_III(t_list **stack_a)
+void	sort_3(t_list **stack_a)
 {
+	int	min;
+
 	if (ft_lstsize(*stack_a) == 3)
 	{
-		int min;
 		if (max_min_element(*stack_a, &min) == 1)
 		{
 			min_3(stack_a, min);
