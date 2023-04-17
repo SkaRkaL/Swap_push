@@ -1,9 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   helper_6.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sakarkal <sakarkal@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/17 21:12:02 by sakarkal          #+#    #+#             */
+/*   Updated: 2023/04/17 23:38:10 by sakarkal         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	flag_stack(int full_size, t_list *indexing)
 {
 	int	mark;
-	int tmp;
+	int	tmp;
+
 	tmp = full_size;
 	mark = indexing->content;
 	while (tmp)
@@ -32,7 +45,7 @@ void	inddexing_flag(t_list **stack, t_list *ret, int full_size)
 		if (indexing->content == ret->content)
 		{
 			indexing->flag = 1;
-			break;
+			break ;
 		}
 		indexing = indexing->next;
 		lenght--;
@@ -43,6 +56,7 @@ void	inddexing_flag(t_list **stack, t_list *ret, int full_size)
 void	helpp(int h, t_list **stack, t_list *head, int count)
 {
 	t_list	*tmp;
+
 	tmp = (*stack);
 	while (h > 0)
 	{
@@ -69,7 +83,6 @@ t_list	*full_helper(t_list	*ret, t_list **stack, int size, int len)
 		return (NULL);
 	while (size)
 	{
-
 		count = 1;
 		h = ft_while(head, tmp_size, count);
 		if (h)
