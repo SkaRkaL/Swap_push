@@ -43,6 +43,7 @@ void	min_2(t_list **stack_a, int min);
 void	min_3(t_list **stack_a, int min);
 void	move_while(t_list **stack_a, t_list **stack_b, t_elm *elm);
 int		up_or_down_moves(int indx_a, int indx_b, t_list *stack_a , t_list *stack_b);
+char	**_parcer(int ac, char **av);
 //----------------------------------------------
 
 int		mymax(int a, int b);
