@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sakarkal <sakarkal@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/17 21:11:20 by sakarkal          #+#    #+#             */
+/*   Updated: 2023/04/17 21:31:49 by sakarkal         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 static size_t	counter(char const *s, char c)
@@ -19,7 +31,7 @@ static size_t	counter(char const *s, char c)
 	return (counter);
 }
 
-static void	*check_isfree(char **str)
+void	*check_isfree(char **str)
 {
 	size_t	i;
 
@@ -65,5 +77,6 @@ char	**ft_split(char *str, char c)
 		start = end;
 	}
 	str_split[i] = NULL;
+	free(str);
 	return (str_split);
 }
