@@ -6,7 +6,7 @@
 /*   By: sakarkal <sakarkal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 21:12:25 by sakarkal          #+#    #+#             */
-/*   Updated: 2023/04/17 23:51:37 by sakarkal         ###   ########.fr       */
+/*   Updated: 2023/04/18 03:12:34 by sakarkal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,12 @@ void	move_while(t_list **stack_a, t_list **stack_b, t_elm *elm);
 int		up_or_down(int indx_a, int indx_b, t_list *stack_a, t_list *stack_b);
 char	**_parcer(int ac, char **av);
 void	*check_isfree(char **str);
+int		__main_help(char ***c, t_list **stack_a, int *i);
+void	sort_big(t_list **stack_a, t_list **stack_b, int size);
+void	aff(t_list *stack_a, t_list *stack_b, int size);
+void	__find_lis_head(t_list **stack, int full_size);
+t_list	*get_best_move(t_list *stack_b);
+void	is_sorted(t_list *stack_a);
 //----------------------------------------------
 
 int		mymax(int a, int b);
@@ -65,6 +71,7 @@ t_list	*ft_lstlast(t_list *lst);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 void	ft_lstadd_front(t_list **lst, t_list *new);
 t_list	*ft_beforelast(t_list *lst);
+void	ft_lstclear(t_list **lst);
 
 int		ft_length(char **str, char *sep, int size);
 char	*ft_strjoin(int size, char **strs, char *sep);
@@ -93,20 +100,16 @@ void	pa(t_list **stack_a, t_list **stack_b, int indx_b);
 void	pb(t_list **stack_b, t_list **stack_a, int indx_a);
 
 void	sort_3(t_list **stack_a);
-void	sort_V(t_list **stack_a, t_list **stack_b);
 int		max_min_element(t_list *stack, int *ret_min);
-
-// void	aff(t_list *stack_a, t_list *stack_b, int size);
 
 void	indx_stack(t_list **stack);
 void	fun1(t_list **stack_a, t_list **stack_b, t_list *test, int a);
 int		fun(t_list *stack, t_list *elem);
 void	push_flag0_b(t_list **stack_a, t_list **stack_b);
-void	mn_te7t_lfo9(t_list **stack_a, t_list *test, int a);
-int		be_to_the_top(t_list *stack, t_list *elem);
+void	nrml_sort(t_list **stack_a, t_list *test, int a);
 void	moves_indx(t_list **stack_a, t_list **stack_b);
 void	push_b_to_a(t_list **stack_b, t_list **stack_a, t_list *bst_contnt);
 t_list	*max_element(t_list *stack);
-t_list	*min_element(t_list *a);
+t_list	*min_elmt(t_list *a);
 
 #endif
