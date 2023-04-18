@@ -6,7 +6,7 @@
 /*   By: sakarkal <sakarkal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 21:12:10 by sakarkal          #+#    #+#             */
-/*   Updated: 2023/04/18 03:16:54 by sakarkal         ###   ########.fr       */
+/*   Updated: 2023/04/18 04:27:39 by sakarkal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	main(int ac, char **av)
 {
-	char	**c;
 	int		i;
+	char	**c;
 	t_list	*stack_a;
 	t_list	*stack_b;
 
