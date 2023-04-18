@@ -6,13 +6,13 @@
 /*   By: sakarkal <sakarkal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 21:11:50 by sakarkal          #+#    #+#             */
-/*   Updated: 2023/04/17 23:30:25 by sakarkal         ###   ########.fr       */
+/*   Updated: 2023/04/18 02:58:16 by sakarkal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	mn_te7t_lfo9(t_list **stack_a, t_list *test, int a)
+void	nrml_sort(t_list **stack_a, t_list *test, int a)
 {
 	while (1)
 	{
@@ -25,11 +25,11 @@ void	mn_te7t_lfo9(t_list **stack_a, t_list *test, int a)
 	}
 }
 
-void	mn_te7t_lfo9_b(t_list **stack_b, t_list *test, int a)
+void	nrml_sort_b(t_list **stack_b, t_list *test, int a)
 {
 	while (1)
 	{
-		if ((*stack_b)->content == test -> content)
+		if ((*stack_b)->content == test->content)
 			break ;
 		if (a == 0)
 			rrb(stack_b, ft_lstsize(*stack_b));
@@ -40,7 +40,7 @@ void	mn_te7t_lfo9_b(t_list **stack_b, t_list *test, int a)
 
 void	fun1(t_list **stack_a, t_list **stack_b, t_list *test, int a)
 {
-	mn_te7t_lfo9(stack_a, test, a);
+	nrml_sort(stack_a, test, a);
 	pb(stack_b, stack_a, ft_lstsize(*stack_a));
 }
 
@@ -55,9 +55,9 @@ int	fun(t_list *stack, t_list *elem)
 	kk = 0;
 	while (1)
 	{
-		if (elem -> content == test -> content)
+		if (elem->content == test->content)
 			break ;
-		test = test -> next;
+		test = test->next;
 		kk++;
 	}
 	if (kk > size / 2)

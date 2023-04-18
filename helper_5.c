@@ -6,7 +6,7 @@
 /*   By: sakarkal <sakarkal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 21:11:55 by sakarkal          #+#    #+#             */
-/*   Updated: 2023/04/17 23:43:24 by sakarkal         ###   ########.fr       */
+/*   Updated: 2023/04/18 03:08:50 by sakarkal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	push_flag0_b(t_list **stack_a, t_list **stack_b)
 	while (tmp)
 	{
 		re_think = 0;
-		if (tmp -> flag == 0)
+		if (tmp->flag == 0)
 		{
 			a = fun((*stack_a), tmp);
 			fun1(stack_a, stack_b, tmp, a);
@@ -30,7 +30,7 @@ void	push_flag0_b(t_list **stack_a, t_list **stack_b)
 			re_think = 1;
 		}
 		if (re_think == 0)
-			tmp = tmp -> next;
+			tmp = tmp->next;
 	}
 }
 
@@ -42,8 +42,8 @@ int	up_or_down(int indx_a, int indx_b, t_list *stack_a, t_list *stack_b)
 	int	dwn_up;
 
 	two_up = mymax(indx_a, indx_b);
-	two_dwn = mymax(ft_lstsize(stack_a) - indx_a, ft_lstsize(stack_b) - indx_b);
 	up_dwn = indx_a + ft_lstsize(stack_b) - indx_b;
+	two_dwn = mymax(ft_lstsize(stack_a) - indx_a, ft_lstsize(stack_b) - indx_b);
 	dwn_up = indx_b + ft_lstsize(stack_a) - indx_a;
 	if (two_up <= two_dwn && two_up <= up_dwn && two_up <= dwn_up)
 		return (two_up);
@@ -57,7 +57,7 @@ int	up_or_down(int indx_a, int indx_b, t_list *stack_a, t_list *stack_b)
 		return (0);
 }
 
-int	up_or_down_type(int indx_a, int indx_b, t_list *stack_a, t_list *stack_b)
+int	up_down_type(int indx_a, int indx_b, t_list *stack_a, t_list *stack_b)
 {
 	int	two_dwn;
 	int	two_up;
@@ -88,7 +88,7 @@ void	moves_indx(t_list **stack_a, t_list **stack_b)
 
 	elm.b_tmp = *stack_b;
 	max = max_element(*stack_a);
-	min = min_element(*stack_a);
+	min = min_elmt(*stack_a);
 	while (elm.b_tmp)
 	{
 		elm.first_tmp = *stack_a;
@@ -108,16 +108,16 @@ void	moves_indx(t_list **stack_a, t_list **stack_b)
 
 void	push_b_to_a(t_list **stack_b, t_list **stack_a, t_list *bst_contnt)
 {
-	if (up_or_down_type(bst_contnt->place->indx, \
+	if (up_down_type(bst_contnt->place->indx,
 			bst_contnt->indx, *stack_a, *stack_b) == 1)
 		it_is_two_up(stack_a, stack_b, bst_contnt);
-	else if (up_or_down_type(bst_contnt->place->indx, \
+	else if (up_down_type(bst_contnt->place->indx,
 			bst_contnt->indx, *stack_a, *stack_b) == 2)
 		it_is_two_dwn(stack_a, stack_b, bst_contnt);
-	else if (up_or_down_type(bst_contnt->place->indx, \
+	else if (up_down_type(bst_contnt->place->indx,
 			bst_contnt->indx, *stack_a, *stack_b) == 3)
 		it_is_up_dwn(stack_a, stack_b, bst_contnt);
-	else if (up_or_down_type(bst_contnt->place->indx, \
+	else if (up_down_type(bst_contnt->place->indx,
 			bst_contnt->indx, *stack_a, *stack_b) == 4)
 		it_is_dwn_up(stack_a, stack_b, bst_contnt);
 	pa(stack_a, stack_b, ft_lstsize(*stack_a));
