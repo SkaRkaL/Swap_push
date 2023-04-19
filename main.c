@@ -6,37 +6,11 @@
 /*   By: sakarkal <sakarkal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 21:12:10 by sakarkal          #+#    #+#             */
-/*   Updated: 2023/04/18 17:41:01 by sakarkal         ###   ########.fr       */
+/*   Updated: 2023/04/19 07:06:04 by sakarkal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void    aff(t_list *stack_a, t_list *stack_b, int size)
-{
-    printf("------Start-----\n");
-    while (size)
-    {
-        if (stack_a)
-        {
-            printf("%d| %d\t", stack_a->content, stack_a->indx);
-            stack_a = stack_a->next;
-        }
-        else
-        {
-            printf("  |   \t");
-        }
-        if (stack_b)
-        {
-            printf("%d| %d", stack_b->content, stack_b->movs);
-            stack_b = stack_b->next;
-        }
-        size--;
-        printf("\n");
-    }
-    printf("-\t-\na\tb\n");
-    printf("------End-----\n");
-}
 
 int	main(int ac, char **av)
 {
