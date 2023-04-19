@@ -6,7 +6,7 @@
 /*   By: sakarkal <sakarkal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 21:12:06 by sakarkal          #+#    #+#             */
-/*   Updated: 2023/04/18 03:05:47 by sakarkal         ###   ########.fr       */
+/*   Updated: 2023/04/18 14:24:52 by sakarkal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	is_sorted(t_list *stack_a)
 		}
 		stack_a = stack_a->next;
 	}
-	exit(write(1, "Already sorted\n", 16) && 0);
+	exit(0);
 }
 
 void	move_while(t_list **stack_a, t_list **stack_b, t_elm *elm)

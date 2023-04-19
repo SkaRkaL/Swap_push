@@ -6,7 +6,7 @@
 /*   By: sakarkal <sakarkal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 21:12:25 by sakarkal          #+#    #+#             */
-/*   Updated: 2023/04/18 04:32:05 by sakarkal         ###   ########.fr       */
+/*   Updated: 2023/04/18 17:54:23 by sakarkal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ void	sort_big(t_list **stack_a, t_list **stack_b, int size);
 void	__find_lis_head(t_list **stack, int full_size);
 t_list	*get_best_move(t_list *stack_b);
 void	is_sorted(t_list *stack_a);
+int		sorted(t_list *stack_a);
+int		ft_strcmp(char *s1, char *s2);
 //----------------------------------------------
 
 int		mymax(int a, int b);

@@ -6,11 +6,37 @@
 /*   By: sakarkal <sakarkal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 21:12:10 by sakarkal          #+#    #+#             */
-/*   Updated: 2023/04/18 04:27:39 by sakarkal         ###   ########.fr       */
+/*   Updated: 2023/04/18 17:41:01 by sakarkal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void    aff(t_list *stack_a, t_list *stack_b, int size)
+{
+    printf("------Start-----\n");
+    while (size)
+    {
+        if (stack_a)
+        {
+            printf("%d| %d\t", stack_a->content, stack_a->indx);
+            stack_a = stack_a->next;
+        }
+        else
+        {
+            printf("  |   \t");
+        }
+        if (stack_b)
+        {
+            printf("%d| %d", stack_b->content, stack_b->movs);
+            stack_b = stack_b->next;
+        }
+        size--;
+        printf("\n");
+    }
+    printf("-\t-\na\tb\n");
+    printf("------End-----\n");
+}
 
 int	main(int ac, char **av)
 {
@@ -32,6 +58,7 @@ int	main(int ac, char **av)
 		sort_3(&stack_a);
 	if (i > 3)
 		sort_big(&stack_a, &stack_b, i);
+	// aff(stack_a, stack_b, mymax(ft_lstsize(stack_a), ft_lstsize(stack_b)));
 	check_isfree(c);
 	ft_lstclear(&stack_a);
 	return (0);

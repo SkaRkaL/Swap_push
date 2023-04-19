@@ -6,7 +6,7 @@
 #    By: sakarkal <sakarkal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/18 03:20:23 by sakarkal          #+#    #+#              #
-#    Updated: 2023/04/18 03:25:08 by sakarkal         ###   ########.fr        #
+#    Updated: 2023/04/19 06:26:37 by sakarkal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,20 @@ SRC = ft_atoi.c \
 		sort_3_helper.c \
 		swap.c
 
+BONUS_SRC = bonus/checker.c \
+		bonus/ft_split.c \
+		bonus/helper_1.c \
+		bonus/helper_2.c \
+		bonus/helper_3.c \
+		bonus/parcer.c \
+		bonus/push.c \
+		bonus/utils_bonus.c \
+		bonus/rotate.c \
+		bonus/rvrse-rotate.c \
+		bonus/swap.c \
+		bonus/get_next_line_utils.c \
+		bonus/get_next_line.c
+
 OBJ = $(SRC:.c=.o) 
 
 BONUS_OBJ = $(BONUS_SRC:.c=.o) 
@@ -49,13 +63,13 @@ $(NAME): $(OBJ)
 	$(CC) $(OBJ) -g -o $(NAME)
 	
 	
-%.o: %.c push_swap.h
+%.o: %.c push_swap.h bonus/push_swap.h
 	$(CC) -Wall -Wextra -Werror -g -c $< -o $@
 	
 clean :
 	@rm -rf $(OBJ) $(BONUS_OBJ) 
 	
 fclean : clean
-	@rm -rf $(NAME) push_swap push_swap_bonus
+	@rm -rf $(NAME) push_swap push_swap_bonus checker
 
 re : fclean all
