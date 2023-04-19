@@ -6,7 +6,7 @@
 /*   By: sakarkal <sakarkal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 13:47:29 by sakarkal          #+#    #+#             */
-/*   Updated: 2023/04/19 07:03:02 by sakarkal         ###   ########.fr       */
+/*   Updated: 2023/04/19 07:15:17 by sakarkal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ void	execute_cmd(t_list **a, t_list **b, char *op)
 	else if (!ft_strcmp(op, "ss\n"))
 		ss(a, b);
 	else if (!ft_strcmp(op, "pa\n"))
-		pa(a, b, 1);
+		pa(a, b);
 	else if (!ft_strcmp(op, "pb\n"))
-		pb(b, a, 1);
+		pb(b, a);
 	else if (!ft_strcmp(op, "ra\n"))
 		ra(a);
 	else if (!ft_strcmp(op, "rb\n"))

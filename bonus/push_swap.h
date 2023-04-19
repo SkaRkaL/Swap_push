@@ -6,7 +6,7 @@
 /*   By: sakarkal <sakarkal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 21:12:25 by sakarkal          #+#    #+#             */
-/*   Updated: 2023/04/19 06:52:22 by sakarkal         ###   ########.fr       */
+/*   Updated: 2023/04/19 07:15:05 by sakarkal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ void	rra(t_list **stack_a);
 void	rrb(t_list **stack_b);
 void	rrr(t_list **stack_a, t_list **stack_b);
 
-void	pa(t_list **stack_a, t_list **stack_b, int indx_b);
-void	pb(t_list **stack_b, t_list **stack_a, int indx_a);
+void	pa(t_list **stack_a, t_list **stack_b);
+void	pb(t_list **stack_b, t_list **stack_a);
 
 size_t	ft_strlcpy(char *dst, char *src, size_t dstsize);
 char	*ft_strdup(char *s1);
