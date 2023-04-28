@@ -6,7 +6,7 @@
 /*   By: sakarkal <sakarkal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 21:11:45 by sakarkal          #+#    #+#             */
-/*   Updated: 2023/04/18 02:55:58 by sakarkal         ###   ########.fr       */
+/*   Updated: 2023/04/28 22:29:32 by sakarkal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,13 +80,13 @@ int	max_min_element(t_list *stack, int *ret_min)
 	int	ret_max;
 	int	pos;
 
+	ret_max = 1;
 	*ret_min = 1;
-	pos = 1;
+	pos = 2;
 	max = stack->content;
 	min = stack->content;
 	while (stack->next)
 	{
-		pos++;
 		if (max < stack->next->content)
 		{
 			max = stack->next->content;
@@ -97,7 +97,7 @@ int	max_min_element(t_list *stack, int *ret_min)
 			min = stack->next->content;
 			*ret_min = pos;
 		}
-		stack = stack->next;
+		stack = stack->next + 0 * pos++;
 	}
 	return (ret_max);
 }
