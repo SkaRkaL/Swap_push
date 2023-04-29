@@ -6,7 +6,7 @@
 /*   By: sakarkal <sakarkal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 13:47:29 by sakarkal          #+#    #+#             */
-/*   Updated: 2023/04/19 07:15:17 by sakarkal         ###   ########.fr       */
+/*   Updated: 2023/04/29 17:37:54 by sakarkal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ int	is_sorted(t_list *stack_a)
 {
 	t_list	*tmp;
 
+	if (!stack_a)
+		return (0);
 	tmp = stack_a->next;
 	while (stack_a->next)
 	{

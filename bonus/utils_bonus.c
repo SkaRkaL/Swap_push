@@ -6,7 +6,7 @@
 /*   By: sakarkal <sakarkal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 16:00:19 by sakarkal          #+#    #+#             */
-/*   Updated: 2023/04/19 07:00:29 by sakarkal         ###   ########.fr       */
+/*   Updated: 2023/04/29 17:31:41 by sakarkal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	ft_lstclear(t_list **lst)
 long	ft_atoi(const char *str)
 {
 	int		i;
-	int		signe;
+	long	signe;
 	long	resu;
 
 	i = 0;
