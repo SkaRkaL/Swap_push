@@ -6,7 +6,7 @@
 #    By: sakarkal <sakarkal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/18 03:20:23 by sakarkal          #+#    #+#              #
-#    Updated: 2023/04/19 06:26:37 by sakarkal         ###   ########.fr        #
+#    Updated: 2023/04/29 16:47:17 by sakarkal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SRC = ft_atoi.c \
 		main.c \
 		main_helper.c \
 		parcer.c \
+		ft_itoa.c \
 		push.c \
 		push_b_to_a.c \
 		rotate.c \
