@@ -6,7 +6,7 @@
 /*   By: sakarkal <sakarkal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 21:12:25 by sakarkal          #+#    #+#             */
-/*   Updated: 2023/04/18 17:54:23 by sakarkal         ###   ########.fr       */
+/*   Updated: 2023/04/29 17:36:28 by sakarkal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ void	sort_big(t_list **stack_a, t_list **stack_b, int size);
 void	__find_lis_head(t_list **stack, int full_size);
 t_list	*get_best_move(t_list *stack_b);
 void	is_sorted(t_list *stack_a);
-int		sorted(t_list *stack_a);
 int		ft_strcmp(char *s1, char *s2);
 //----------------------------------------------
 
@@ -101,6 +100,7 @@ void	pa(t_list **stack_a, t_list **stack_b, int indx_b);
 void	pb(t_list **stack_b, t_list **stack_a, int indx_a);
 
 void	sort_3(t_list **stack_a);
+char	*ft_itoa(int nbr);
 int		max_min_element(t_list *stack, int *ret_min);
 
 void	indx_stack(t_list **stack);
@@ -112,5 +112,6 @@ void	moves_indx(t_list **stack_a, t_list **stack_b);
 void	push_b_to_a(t_list **stack_b, t_list **stack_a, t_list *bst_contnt);
 t_list	*max_element(t_list *stack);
 t_list	*min_elmt(t_list *a);
+int		help(char **c);
 
 #endif
