@@ -6,7 +6,7 @@
 /*   By: sakarkal <sakarkal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 21:09:52 by sakarkal          #+#    #+#             */
-/*   Updated: 2023/04/17 21:14:01 by sakarkal         ###   ########.fr       */
+/*   Updated: 2023/04/29 17:37:38 by sakarkal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 long	ft_atoi(const char *str)
 {
 	int		i;
-	int		signe;
+	long	signe;
 	long	resu;
 
 	i = 0;
@@ -35,4 +35,34 @@ long	ft_atoi(const char *str)
 		i++;
 	}
 	return (resu * signe);
+}
+
+int	ft_strcmp(char *s1, char *s2)
+{
+	int	i;
+
+	i = 0;
+	while (s1[i] && s2[i] && s1[i] == s2[i])
+		i++;
+	return (s1[i] - s2[i]);
+}
+
+int	help(char **c)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (c[i])
+	{
+		j = i + 1;
+		while (c[j])
+		{
+			if (!ft_strcmp((char *)c[i], (char *)c[j]))
+				exit(write(2, "Error\n", 7));
+			j++;
+		}
+		i++;
+	}
+	return (0);
 }
