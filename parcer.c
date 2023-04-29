@@ -6,41 +6,11 @@
 /*   By: sakarkal <sakarkal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 21:12:17 by sakarkal          #+#    #+#             */
-/*   Updated: 2023/04/18 14:22:30 by sakarkal         ###   ########.fr       */
+/*   Updated: 2023/04/29 17:34:58 by sakarkal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	ft_strcmp(char *s1, char *s2)
-{
-	int	i;
-
-	i = 0;
-	while (s1[i] && s2[i] && s1[i] == s2[i])
-		i++;
-	return (s1[i] - s2[i]);
-}
-
-int	help(char **c)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (c[i])
-	{
-		j = i + 1;
-		while (c[j])
-		{
-			if (!ft_strcmp((char *)c[i], (char *)c[j]))
-				exit(write(2, "Error\n", 7));
-			j++;
-		}
-		i++;
-	}
-	return (0);
-}
 
 int	ft_check_esp(char *str)
 {
@@ -72,12 +42,57 @@ int	ft_empty(char **av)
 	return (1);
 }
 
+void	parc_int(char *str)
+{
+	long	a;
+	int		x;
+
+	x = 0;
+	a = ft_atoi(str);
+	while (str[x] == 48)
+		x++;
+	if (a > INT_MAX || a < INT_MIN)
+	{
+		write(1, "Error\n", 6);
+		exit(1);
+	}
+	else if (ft_strlen(str + x) > ft_strlen("+2147483647"))
+	{
+		write(1, "Error\n", 6);
+		exit(1);
+	}
+}
+
+void	check_dob(char **dob)
+{
+	int	a;	
+	int	b;
+
+	a = 0;
+	while (dob[a])
+	{
+		b = a + 1;
+		while (dob[b])
+		{
+			if (ft_atoi(dob[a]) == ft_atoi(dob[b]))
+			{
+				write(1, "Error\n", 6);
+				exit(1);
+			}
+			b++;
+		}
+		a++;
+	}
+}
+
 char	**_parcer(int ac, char **av)
 {
 	int		i;
+	int		a;
 	char	**c;
 
 	i = -1;
+	a = 0;
 	if (ac > 1)
 	{
 		if (!ft_empty(av))
@@ -88,8 +103,9 @@ char	**_parcer(int ac, char **av)
 		while (c[++i])
 			if (ft_isdigit(c[i]))
 				exit(write(2, "Error\n", 7));
-		if (help(c))
-			return (NULL);
+		while (c[a])
+			parc_int(c[a++]);
+		check_dob(c);
 	}
 	else
 		exit(0);
