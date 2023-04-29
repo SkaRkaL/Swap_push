@@ -6,7 +6,7 @@
 /*   By: sakarkal <sakarkal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 00:50:28 by sakarkal          #+#    #+#             */
-/*   Updated: 2023/04/18 03:09:15 by sakarkal         ###   ########.fr       */
+/*   Updated: 2023/04/29 16:10:54 by sakarkal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,6 @@ int	__main_help(char ***c, t_list **stack_a, int *i)
 	while ((*c)[*i])
 	{
 		i_atoi = ft_atoi((*c)[(*i)++]);
-		if (i_atoi > INT_MAX || i_atoi < INT_MIN)
-		{
-			check_isfree(*c);
-			return (1);
-		}
 		ft_lstadd_back(stack_a, ft_lstnew(i_atoi));
 	}
 	return (0);
